@@ -1,20 +1,18 @@
-#ifndef COMMONDATA_H
-#define COMMONDATA_H
+#pragma once
 
 #ifdef WIN32
 #include <Windows.h>
 #endif
 
-#include "../engine/core/types.h"
-#include "../engine/core/FontManager.h"
+#include "../core/types.h"
+#include "../core/FontManager.h"
 #include <string.h>
-#include "../engine/util/gxDebug.h"
-#include "../engine/core/TextureManager.h"
+#include "../util/gxDebug.h"
+#include "../core/TextureManager.h"
 
-#include "../engine/renderer/rendererGL10.h"
-#include "../engine/core/object3d.h"
-#include "../game/playerData.h"
-
+#include "../renderer/rendererGL10.h"
+#include "../core/object3d.h"
+#include "../../game/playerData.h"
 
 class CommonData
 {
@@ -122,5 +120,3 @@ private:
 	HWND m_hWnd;
 	playerData m_cPlayerData;
 };
-
-#endif

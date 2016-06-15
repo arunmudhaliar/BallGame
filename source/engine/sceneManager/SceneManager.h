@@ -1,8 +1,7 @@
-#ifndef SCENEMANAGER_H
-#define SCENEMANAGER_H
+#pragma once
 
 #include "Scene.h"
-#include "../engine/util/bxLinkedList.h"
+#include "../util/bxLinkedList.h"
 
 class Scene;
 
@@ -74,5 +73,3 @@ private:
     unsigned long m_uElapsedTimeAfterPreviousFixedUpdate;
     bool m_bPause;
 };
-
-#endif

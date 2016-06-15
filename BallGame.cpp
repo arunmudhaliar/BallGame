@@ -5,7 +5,7 @@
 #include "BallGame.h"
 
 #include "source/engine/core/Timer.h"
-#include "source/SceneManager/SceneManager.h"
+#include "source/engine/sceneManager/SceneManager.h"
 
 #include "source/scenes/mainmenu.h"
 #include "source/scenes/gameScene.h"

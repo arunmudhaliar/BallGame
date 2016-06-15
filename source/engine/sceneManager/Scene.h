@@ -1,11 +1,11 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "../engine/core/pxMath.h"
+#include "../core/pxMath.h"
 #include "SceneManager.h"
 #include "CommonData.h"
 #include "SceneFader.h"
-#include "../engine/util/bxLinkedList.h"
+#include "../util/bxLinkedList.h"
 
 class SceneManager;
 

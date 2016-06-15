@@ -1,6 +1,6 @@
 #include "SceneManager.h"
-#include "../engine/util/gxDebug.h"
-#include "../engine/core/Timer.h"
+#include "../util/gxDebug.h"
+#include "../core/Timer.h"
 
 SceneManager::SceneManager()
 {

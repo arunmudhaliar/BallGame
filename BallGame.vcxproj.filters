@@ -16,9 +16,6 @@
     <Filter Include="Header Files\source">
       <UniqueIdentifier>{e7f5a883-3a95-4e0c-bc98-d50025d5c157}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\source\SceneManager">
-      <UniqueIdentifier>{98ec176f-b196-4546-9de7-f908082f80c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\source\scenes">
       <UniqueIdentifier>{e9d0fd39-d284-4a8d-8150-1bfcda4aa39b}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,9 @@
     <Filter Include="Header Files\source\game">
       <UniqueIdentifier>{022e6e5a-c173-4b36-8963-7c8693409a79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\source\engine\sceneManager">
+      <UniqueIdentifier>{64af4e73-eed7-4c72-a584-b1b36753f421}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -62,18 +62,6 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\SceneManager\CommonData.h">
-      <Filter>Header Files\source\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="source\SceneManager\Scene.h">
-      <Filter>Header Files\source\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="source\SceneManager\SceneFader.h">
-      <Filter>Header Files\source\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="source\SceneManager\SceneManager.h">
-      <Filter>Header Files\source\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="source\scenes\mainmenu.h">
       <Filter>Header Files\source\scenes</Filter>
@@ -237,19 +225,22 @@
     <ClInclude Include="source\engine\core\Sprite2Dx.h">
       <Filter>Header Files\source\engine\core</Filter>
     </ClInclude>
+    <ClInclude Include="source\engine\sceneManager\CommonData.h">
+      <Filter>Header Files\source\engine\sceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\sceneManager\Scene.h">
+      <Filter>Header Files\source\engine\sceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\sceneManager\SceneFader.h">
+      <Filter>Header Files\source\engine\sceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\sceneManager\SceneManager.h">
+      <Filter>Header Files\source\engine\sceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\SceneManager\Scene.cpp">
-      <Filter>Header Files\source\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="source\SceneManager\SceneFader.cpp">
-      <Filter>Header Files\source\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="source\SceneManager\SceneManager.cpp">
-      <Filter>Header Files\source\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="source\scenes\mainmenu.cpp">
       <Filter>Header Files\source\scenes</Filter>
@@ -391,6 +382,15 @@
     </ClCompile>
     <ClCompile Include="source\engine\core\Sprite2Dx.cpp">
       <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\sceneManager\Scene.cpp">
+      <Filter>Header Files\source\engine\sceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\sceneManager\SceneFader.cpp">
+      <Filter>Header Files\source\engine\sceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\sceneManager\SceneManager.cpp">
+      <Filter>Header Files\source\engine\sceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 
 #include "SceneFader.h"
-#include "../engine/core/glincludes.h"
-#include "../engine/util/gxDebug.h"
-#include "../engine/renderer/renderer.h"
+#include "../core/glincludes.h"
+#include "../util/gxDebug.h"
+#include "../renderer/renderer.h"
 
 void SceneFader::initFader(CommonData* pCommonData)
 {

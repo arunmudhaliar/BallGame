@@ -116,6 +116,10 @@
     <ClInclude Include="source\engine\renderer\renderer.h" />
     <ClInclude Include="source\engine\renderer\rendererGL10.h" />
     <ClInclude Include="source\engine\renderer\wglew.h" />
+    <ClInclude Include="source\engine\sceneManager\CommonData.h" />
+    <ClInclude Include="source\engine\sceneManager\Scene.h" />
+    <ClInclude Include="source\engine\sceneManager\SceneFader.h" />
+    <ClInclude Include="source\engine\sceneManager\SceneManager.h" />
     <ClInclude Include="source\engine\util\bxLinkedList.h" />
     <ClInclude Include="source\engine\util\gxDebug.h" />
     <ClInclude Include="source\engine\util\gxFile.h" />
@@ -136,10 +140,6 @@
     <ClInclude Include="source\game\explossion.h" />
     <ClInclude Include="source\game\playerData.h" />
     <ClInclude Include="source\game\targetTrail.h" />
-    <ClInclude Include="source\SceneManager\CommonData.h" />
-    <ClInclude Include="source\SceneManager\Scene.h" />
-    <ClInclude Include="source\SceneManager\SceneFader.h" />
-    <ClInclude Include="source\SceneManager\SceneManager.h" />
     <ClInclude Include="source\scenes\gameStatsScreen.h" />
     <ClInclude Include="source\scenes\mainmenu.h" />
     <ClInclude Include="source\scenes\gameScene.h" />
@@ -174,6 +174,9 @@
     <ClCompile Include="source\engine\lpng151\pngwutil.c" />
     <ClCompile Include="source\engine\renderer\renderer.cpp" />
     <ClCompile Include="source\engine\renderer\rendererGL10.cpp" />
+    <ClCompile Include="source\engine\sceneManager\Scene.cpp" />
+    <ClCompile Include="source\engine\sceneManager\SceneFader.cpp" />
+    <ClCompile Include="source\engine\sceneManager\SceneManager.cpp" />
     <ClCompile Include="source\engine\util\gxDebug.cpp" />
     <ClCompile Include="source\engine\util\gxFile.cpp" />
     <ClCompile Include="source\engine\zlib-1.2.4\adler32.c" />
@@ -191,9 +194,6 @@
     <ClCompile Include="source\game\entityManager.cpp" />
     <ClCompile Include="source\game\explossion.cpp" />
     <ClCompile Include="source\game\targetTrail.cpp" />
-    <ClCompile Include="source\SceneManager\Scene.cpp" />
-    <ClCompile Include="source\SceneManager\SceneFader.cpp" />
-    <ClCompile Include="source\SceneManager\SceneManager.cpp" />
     <ClCompile Include="source\scenes\gameStatsScreen.cpp" />
     <ClCompile Include="source\scenes\mainmenu.cpp" />
     <ClCompile Include="source\scenes\gameScene.cpp" />
