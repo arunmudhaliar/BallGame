@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{911F662D-140D-4E7A-A3B3-6EB44FC715CD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Astroid</RootNamespace>
+    <ProjectName>BallGame</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>./source/engine/zlib-1.2.4;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>./source/engine/zlib-1.2.4;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="BallGame.ico" />
+    <None Include="ReadMe.txt" />
+    <None Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BallGame.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="source\engine\core\FontManager.h" />
+    <ClInclude Include="source\engine\core\glincludes.h" />
+    <ClInclude Include="source\engine\core\gxMaterial.h" />
+    <ClInclude Include="source\engine\core\gxMesh.h" />
+    <ClInclude Include="source\engine\core\gxTexture.h" />
+    <ClInclude Include="source\engine\core\gxTriInfo.h" />
+    <ClInclude Include="source\engine\core\matrix4x4f.h" />
+    <ClInclude Include="source\engine\core\object3d.h" />
+    <ClInclude Include="source\engine\core\pxMath.h" />
+    <ClInclude Include="source\engine\core\rect.h" />
+    <ClInclude Include="source\engine\core\stTexturePacket.h" />
+    <ClInclude Include="source\engine\core\TextureManager.h" />
+    <ClInclude Include="source\engine\core\Timer.h" />
+    <ClInclude Include="source\engine\core\transformf.h" />
+    <ClInclude Include="source\engine\core\types.h" />
+    <ClInclude Include="source\engine\core\vector2.h" />
+    <ClInclude Include="source\engine\core\vector3.h" />
+    <ClInclude Include="source\engine\lpng151\png.h" />
+    <ClInclude Include="source\engine\lpng151\pngconf.h" />
+    <ClInclude Include="source\engine\lpng151\pngdebug.h" />
+    <ClInclude Include="source\engine\lpng151\pnginfo.h" />
+    <ClInclude Include="source\engine\lpng151\pnglibconf.h" />
+    <ClInclude Include="source\engine\lpng151\pngpriv.h" />
+    <ClInclude Include="source\engine\lpng151\pngstruct.h" />
+    <ClInclude Include="source\engine\renderer\glew.h" />
+    <ClInclude Include="source\engine\renderer\renderer.h" />
+    <ClInclude Include="source\engine\renderer\rendererGL10.h" />
+    <ClInclude Include="source\engine\renderer\wglew.h" />
+    <ClInclude Include="source\engine\util\bxLinkedList.h" />
+    <ClInclude Include="source\engine\util\gxDebug.h" />
+    <ClInclude Include="source\engine\util\gxFile.h" />
+    <ClInclude Include="source\engine\util\objC_util.h" />
+    <ClInclude Include="source\engine\util\pngLoader.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\crc32.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\deflate.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\inffast.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\inffixed.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\inflate.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\inftrees.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\trees.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\zconf.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\zlib.h" />
+    <ClInclude Include="source\engine\zlib-1.2.4\zutil.h" />
+    <ClInclude Include="source\SceneManager\CommonData.h" />
+    <ClInclude Include="source\SceneManager\Scene.h" />
+    <ClInclude Include="source\SceneManager\SceneFader.h" />
+    <ClInclude Include="source\SceneManager\SceneManager.h" />
+    <ClInclude Include="source\scenes\entityManager.h" />
+    <ClInclude Include="source\scenes\explossion.h" />
+    <ClInclude Include="source\scenes\gameStatsScreen.h" />
+    <ClInclude Include="source\scenes\mainmenu.h" />
+    <ClInclude Include="source\scenes\playerData.h" />
+    <ClInclude Include="source\scenes\gameScene.h" />
+    <ClInclude Include="source\scenes\ball.h" />
+    <ClInclude Include="source\scenes\targetTrail.h" />
+    <ClInclude Include="source\SpriteManager\Sprite.h" />
+    <ClInclude Include="source\SpriteManager\Sprite2Dx.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BallGame.cpp" />
+    <ClCompile Include="source\engine\core\FontManager.cpp" />
+    <ClCompile Include="source\engine\core\gxMaterial.cpp" />
+    <ClCompile Include="source\engine\core\gxMesh.cpp" />
+    <ClCompile Include="source\engine\core\object3d.cpp" />
+    <ClCompile Include="source\engine\core\TextureManager.cpp" />
+    <ClCompile Include="source\engine\core\Timer.cpp" />
+    <ClCompile Include="source\engine\core\types.cpp" />
+    <ClCompile Include="source\engine\lpng151\png.c" />
+    <ClCompile Include="source\engine\lpng151\pngerror.c" />
+    <ClCompile Include="source\engine\lpng151\pngget.c" />
+    <ClCompile Include="source\engine\lpng151\pngmem.c" />
+    <ClCompile Include="source\engine\lpng151\pngpread.c" />
+    <ClCompile Include="source\engine\lpng151\pngread.c" />
+    <ClCompile Include="source\engine\lpng151\pngrio.c" />
+    <ClCompile Include="source\engine\lpng151\pngrtran.c" />
+    <ClCompile Include="source\engine\lpng151\pngrutil.c" />
+    <ClCompile Include="source\engine\lpng151\pngset.c" />
+    <ClCompile Include="source\engine\lpng151\pngtrans.c" />
+    <ClCompile Include="source\engine\lpng151\pngwio.c" />
+    <ClCompile Include="source\engine\lpng151\pngwrite.c" />
+    <ClCompile Include="source\engine\lpng151\pngwtran.c" />
+    <ClCompile Include="source\engine\lpng151\pngwutil.c" />
+    <ClCompile Include="source\engine\renderer\renderer.cpp" />
+    <ClCompile Include="source\engine\renderer\rendererGL10.cpp" />
+    <ClCompile Include="source\engine\util\gxDebug.cpp" />
+    <ClCompile Include="source\engine\util\gxFile.cpp" />
+    <ClCompile Include="source\engine\zlib-1.2.4\adler32.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\compress.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\crc32.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\deflate.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\infback.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\inffast.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\inflate.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\inftrees.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\trees.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\uncompr.c" />
+    <ClCompile Include="source\engine\zlib-1.2.4\zutil.c" />
+    <ClCompile Include="source\SceneManager\Scene.cpp" />
+    <ClCompile Include="source\SceneManager\SceneFader.cpp" />
+    <ClCompile Include="source\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="source\scenes\entityManager.cpp" />
+    <ClCompile Include="source\scenes\explossion.cpp" />
+    <ClCompile Include="source\scenes\gameStatsScreen.cpp" />
+    <ClCompile Include="source\scenes\mainmenu.cpp" />
+    <ClCompile Include="source\scenes\gameScene.cpp" />
+    <ClCompile Include="source\scenes\ball.cpp" />
+    <ClCompile Include="source\scenes\targetTrail.cpp" />
+    <ClCompile Include="source\SpriteManager\Sprite.cpp" />
+    <ClCompile Include="source\SpriteManager\Sprite2Dx.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BallGame.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

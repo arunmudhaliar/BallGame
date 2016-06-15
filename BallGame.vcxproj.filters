@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\source">
+      <UniqueIdentifier>{e7f5a883-3a95-4e0c-bc98-d50025d5c157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\SceneManager">
+      <UniqueIdentifier>{98ec176f-b196-4546-9de7-f908082f80c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\SoundEngine">
+      <UniqueIdentifier>{0e3d7dc0-8ea5-4ae2-a587-7486279299ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\SpriteManager">
+      <UniqueIdentifier>{a621d261-2eed-46dd-a9cd-d05b708461b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\UI">
+      <UniqueIdentifier>{62a01876-863d-4633-8011-bc8e0ad3426b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\scenes">
+      <UniqueIdentifier>{e9d0fd39-d284-4a8d-8150-1bfcda4aa39b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\engine">
+      <UniqueIdentifier>{15d3cc08-b74f-4de1-8616-f35c258ef32f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\engine\core">
+      <UniqueIdentifier>{911476f7-8b68-4e14-9f85-71ac821870e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\engine\lpng151">
+      <UniqueIdentifier>{24a3ce4c-122c-4773-bbf1-cf055289c19f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\engine\renderer">
+      <UniqueIdentifier>{c9014e2a-8e1e-4426-a47f-e2c636a5e45e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\engine\util">
+      <UniqueIdentifier>{243b20dc-c83e-4407-9c95-a0113ba652ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\source\engine\zlib-1.2.4">
+      <UniqueIdentifier>{14907ccb-7a15-4a9b-95c3-d883683e76a6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BallGame.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SpriteManager\Sprite.h">
+      <Filter>Header Files\source\SpriteManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SpriteManager\Sprite2Dx.h">
+      <Filter>Header Files\source\SpriteManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SceneManager\CommonData.h">
+      <Filter>Header Files\source\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SceneManager\Scene.h">
+      <Filter>Header Files\source\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SceneManager\SceneFader.h">
+      <Filter>Header Files\source\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SceneManager\SceneManager.h">
+      <Filter>Header Files\source\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\entityManager.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\explossion.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\mainmenu.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\playerData.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\FontManager.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\glincludes.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\gxTexture.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\matrix4x4f.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\object3d.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\pxMath.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\rect.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\stTexturePacket.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\TextureManager.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\Timer.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\transformf.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\types.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\vector2.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\vector3.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\lpng151\png.h">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\lpng151\pngconf.h">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\lpng151\pngdebug.h">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\lpng151\pnginfo.h">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\lpng151\pnglibconf.h">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\lpng151\pngpriv.h">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\lpng151\pngstruct.h">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\renderer\glew.h">
+      <Filter>Header Files\source\engine\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\renderer\renderer.h">
+      <Filter>Header Files\source\engine\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\renderer\rendererGL10.h">
+      <Filter>Header Files\source\engine\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\renderer\wglew.h">
+      <Filter>Header Files\source\engine\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\util\bxLinkedList.h">
+      <Filter>Header Files\source\engine\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\util\gxDebug.h">
+      <Filter>Header Files\source\engine\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\util\gxFile.h">
+      <Filter>Header Files\source\engine\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\util\pngLoader.h">
+      <Filter>Header Files\source\engine\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\crc32.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\deflate.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\inffast.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\inffixed.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\inflate.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\inftrees.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\trees.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\zconf.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\zlib.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\zlib-1.2.4\zutil.h">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\util\objC_util.h">
+      <Filter>Header Files\source\engine\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\gameStatsScreen.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\gxMesh.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\gxTriInfo.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\gxMaterial.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\ball.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\gameScene.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="source\scenes\targetTrail.h">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BallGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SpriteManager\Sprite.cpp">
+      <Filter>Header Files\source\SpriteManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SpriteManager\Sprite2Dx.cpp">
+      <Filter>Header Files\source\SpriteManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SceneManager\Scene.cpp">
+      <Filter>Header Files\source\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SceneManager\SceneFader.cpp">
+      <Filter>Header Files\source\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SceneManager\SceneManager.cpp">
+      <Filter>Header Files\source\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\entityManager.cpp">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\explossion.cpp">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\mainmenu.cpp">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\FontManager.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\object3d.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\TextureManager.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\Timer.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\types.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\png.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngerror.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngget.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngmem.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngpread.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngread.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngrio.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngrtran.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngrutil.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngset.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngtrans.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngwio.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngwrite.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngwtran.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\lpng151\pngwutil.c">
+      <Filter>Header Files\source\engine\lpng151</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\renderer\renderer.cpp">
+      <Filter>Header Files\source\engine\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\renderer\rendererGL10.cpp">
+      <Filter>Header Files\source\engine\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\util\gxDebug.cpp">
+      <Filter>Header Files\source\engine\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\util\gxFile.cpp">
+      <Filter>Header Files\source\engine\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\adler32.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\compress.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\crc32.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\deflate.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\infback.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\inffast.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\inflate.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\inftrees.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\trees.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\uncompr.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\zlib-1.2.4\zutil.c">
+      <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\gameStatsScreen.cpp">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\gxMesh.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\gxMaterial.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\ball.cpp">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\gameScene.cpp">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\targetTrail.cpp">
+      <Filter>Header Files\source\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BallGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BallGame.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
