@@ -96,6 +96,8 @@
     <ClInclude Include="source\engine\core\object3d.h" />
     <ClInclude Include="source\engine\core\pxMath.h" />
     <ClInclude Include="source\engine\core\rect.h" />
+    <ClInclude Include="source\engine\core\Sprite.h" />
+    <ClInclude Include="source\engine\core\Sprite2Dx.h" />
     <ClInclude Include="source\engine\core\stTexturePacket.h" />
     <ClInclude Include="source\engine\core\TextureManager.h" />
     <ClInclude Include="source\engine\core\Timer.h" />
@@ -129,20 +131,18 @@
     <ClInclude Include="source\engine\zlib-1.2.4\zconf.h" />
     <ClInclude Include="source\engine\zlib-1.2.4\zlib.h" />
     <ClInclude Include="source\engine\zlib-1.2.4\zutil.h" />
+    <ClInclude Include="source\game\ball.h" />
+    <ClInclude Include="source\game\entityManager.h" />
+    <ClInclude Include="source\game\explossion.h" />
+    <ClInclude Include="source\game\playerData.h" />
+    <ClInclude Include="source\game\targetTrail.h" />
     <ClInclude Include="source\SceneManager\CommonData.h" />
     <ClInclude Include="source\SceneManager\Scene.h" />
     <ClInclude Include="source\SceneManager\SceneFader.h" />
     <ClInclude Include="source\SceneManager\SceneManager.h" />
-    <ClInclude Include="source\scenes\entityManager.h" />
-    <ClInclude Include="source\scenes\explossion.h" />
     <ClInclude Include="source\scenes\gameStatsScreen.h" />
     <ClInclude Include="source\scenes\mainmenu.h" />
-    <ClInclude Include="source\scenes\playerData.h" />
     <ClInclude Include="source\scenes\gameScene.h" />
-    <ClInclude Include="source\scenes\ball.h" />
-    <ClInclude Include="source\scenes\targetTrail.h" />
-    <ClInclude Include="source\SpriteManager\Sprite.h" />
-    <ClInclude Include="source\SpriteManager\Sprite2Dx.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -152,6 +152,8 @@
     <ClCompile Include="source\engine\core\gxMaterial.cpp" />
     <ClCompile Include="source\engine\core\gxMesh.cpp" />
     <ClCompile Include="source\engine\core\object3d.cpp" />
+    <ClCompile Include="source\engine\core\Sprite.cpp" />
+    <ClCompile Include="source\engine\core\Sprite2Dx.cpp" />
     <ClCompile Include="source\engine\core\TextureManager.cpp" />
     <ClCompile Include="source\engine\core\Timer.cpp" />
     <ClCompile Include="source\engine\core\types.cpp" />
@@ -185,18 +187,16 @@
     <ClCompile Include="source\engine\zlib-1.2.4\trees.c" />
     <ClCompile Include="source\engine\zlib-1.2.4\uncompr.c" />
     <ClCompile Include="source\engine\zlib-1.2.4\zutil.c" />
+    <ClCompile Include="source\game\ball.cpp" />
+    <ClCompile Include="source\game\entityManager.cpp" />
+    <ClCompile Include="source\game\explossion.cpp" />
+    <ClCompile Include="source\game\targetTrail.cpp" />
     <ClCompile Include="source\SceneManager\Scene.cpp" />
     <ClCompile Include="source\SceneManager\SceneFader.cpp" />
     <ClCompile Include="source\SceneManager\SceneManager.cpp" />
-    <ClCompile Include="source\scenes\entityManager.cpp" />
-    <ClCompile Include="source\scenes\explossion.cpp" />
     <ClCompile Include="source\scenes\gameStatsScreen.cpp" />
     <ClCompile Include="source\scenes\mainmenu.cpp" />
     <ClCompile Include="source\scenes\gameScene.cpp" />
-    <ClCompile Include="source\scenes\ball.cpp" />
-    <ClCompile Include="source\scenes\targetTrail.cpp" />
-    <ClCompile Include="source\SpriteManager\Sprite.cpp" />
-    <ClCompile Include="source\SpriteManager\Sprite2Dx.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

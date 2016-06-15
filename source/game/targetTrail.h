@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../SpriteManager/Sprite2Dx.h"
+#include "../engine/core/Sprite2Dx.h"
+#include "../engine/core/object3d.h"
 
 class targetTrail : public Sprite2Dx
 {

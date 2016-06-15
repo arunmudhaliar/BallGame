@@ -1,10 +1,8 @@
-#ifndef EXPLOSSION_H
-#define EXPLOSSION_H
+#pragma once
 
 #include "entityManager.h"
-#include "../SpriteManager/Sprite2Dx.h"
+#include "../engine/core/Sprite2Dx.h"
 #include "../engine/core/TextureManager.h"
-//#include "../engine/core/vector2.h"
 
 class explossion : public entityBase, public Sprite2Dx
 {
@@ -21,5 +19,3 @@ private:
 	vector2i m_cTextureSize;
 	vector2i m_cFrameSize;
 };
-
-#endif

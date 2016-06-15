@@ -2,11 +2,10 @@
 
 #include "../SceneManager/Scene.h"
 #include "../engine/core/TextureManager.h"
-
-#include "../SpriteManager/Sprite2Dx.h"
-#include "ball.h"
-#include "entityManager.h"
-#include "targetTrail.h"
+#include "../engine/core/Sprite2Dx.h"
+#include "../game/ball.h"
+#include "../game/entityManager.h"
+#include "../game/targetTrail.h"
 
 class gameScene : public Scene, public MEntityObserver
 {

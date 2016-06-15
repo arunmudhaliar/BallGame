@@ -83,7 +83,7 @@ void gameScene::onUpdate(unsigned int dtm)
     if(isPaused()) return;
         
     float dt=(float)dtm/1000.0f;
-    if(dt>0.3f)dt=0.06f;
+    dt=min(dt, 0.05f);
 
 	processKeyInputs();
 
@@ -119,10 +119,6 @@ void gameScene::onRender()
 					m_cRotation);
 
     getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);
-
- //   char nuke[16];
-	//sprintf(nuke, "%d\tPress 'B'", m_cSpaceShip.getNoOfNuke());
- //   getCommonData()->getArialBold15Font()->drawString(nuke, getCommonData()->getScreenWidth()*0.9f, getCommonData()->getScreenHeight()*0.93f);
 
 	Scene::onRender();
 }

@@ -1,12 +1,10 @@
-#ifndef SPRITE_H
-#define SPRITE_H
+#pragma once
 
-#include "../SceneManager/CommonData.h"
-#include "../engine/core/TextureManager.h"
-#include "../engine/core/transformf.h"
-#include "../engine/core/gxTexture.h"
-#include "../engine/core/vector2.h"
-#include "../engine/core/rect.h"
+#include "TextureManager.h"
+#include "transformf.h"
+#include "gxTexture.h"
+#include "vector2.h"
+#include "rect.h"
 
 class Sprite : public transformf
 {
@@ -99,5 +97,3 @@ protected:
 
 	matrix4x4f m_cTextureMatrix;
 };
-
-#endif

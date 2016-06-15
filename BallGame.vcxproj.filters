@@ -19,15 +19,6 @@
     <Filter Include="Header Files\source\SceneManager">
       <UniqueIdentifier>{98ec176f-b196-4546-9de7-f908082f80c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\source\SoundEngine">
-      <UniqueIdentifier>{0e3d7dc0-8ea5-4ae2-a587-7486279299ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\source\SpriteManager">
-      <UniqueIdentifier>{a621d261-2eed-46dd-a9cd-d05b708461b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\source\UI">
-      <UniqueIdentifier>{62a01876-863d-4633-8011-bc8e0ad3426b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\source\scenes">
       <UniqueIdentifier>{e9d0fd39-d284-4a8d-8150-1bfcda4aa39b}</UniqueIdentifier>
     </Filter>
@@ -49,6 +40,9 @@
     <Filter Include="Header Files\source\engine\zlib-1.2.4">
       <UniqueIdentifier>{14907ccb-7a15-4a9b-95c3-d883683e76a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\source\game">
+      <UniqueIdentifier>{022e6e5a-c173-4b36-8963-7c8693409a79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -69,12 +63,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\SpriteManager\Sprite.h">
-      <Filter>Header Files\source\SpriteManager</Filter>
-    </ClInclude>
-    <ClInclude Include="source\SpriteManager\Sprite2Dx.h">
-      <Filter>Header Files\source\SpriteManager</Filter>
-    </ClInclude>
     <ClInclude Include="source\SceneManager\CommonData.h">
       <Filter>Header Files\source\SceneManager</Filter>
     </ClInclude>
@@ -87,16 +75,7 @@
     <ClInclude Include="source\SceneManager\SceneManager.h">
       <Filter>Header Files\source\SceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="source\scenes\entityManager.h">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="source\scenes\explossion.h">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClInclude>
     <ClInclude Include="source\scenes\mainmenu.h">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="source\scenes\playerData.h">
       <Filter>Header Files\source\scenes</Filter>
     </ClInclude>
     <ClInclude Include="source\engine\core\FontManager.h">
@@ -231,28 +210,37 @@
     <ClInclude Include="source\engine\core\gxMaterial.h">
       <Filter>Header Files\source\engine\core</Filter>
     </ClInclude>
-    <ClInclude Include="source\scenes\ball.h">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClInclude>
     <ClInclude Include="source\scenes\gameScene.h">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="source\scenes\targetTrail.h">
       <Filter>Header Files\source\scenes</Filter>
     </ClInclude>
     <ClInclude Include="BallGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\game\targetTrail.h">
+      <Filter>Header Files\source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game\ball.h">
+      <Filter>Header Files\source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game\entityManager.h">
+      <Filter>Header Files\source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game\explossion.h">
+      <Filter>Header Files\source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game\playerData.h">
+      <Filter>Header Files\source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\Sprite.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\core\Sprite2Dx.h">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\SpriteManager\Sprite.cpp">
-      <Filter>Header Files\source\SpriteManager</Filter>
-    </ClCompile>
-    <ClCompile Include="source\SpriteManager\Sprite2Dx.cpp">
-      <Filter>Header Files\source\SpriteManager</Filter>
     </ClCompile>
     <ClCompile Include="source\SceneManager\Scene.cpp">
       <Filter>Header Files\source\SceneManager</Filter>
@@ -262,12 +250,6 @@
     </ClCompile>
     <ClCompile Include="source\SceneManager\SceneManager.cpp">
       <Filter>Header Files\source\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="source\scenes\entityManager.cpp">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="source\scenes\explossion.cpp">
-      <Filter>Header Files\source\scenes</Filter>
     </ClCompile>
     <ClCompile Include="source\scenes\mainmenu.cpp">
       <Filter>Header Files\source\scenes</Filter>
@@ -386,17 +368,29 @@
     <ClCompile Include="source\engine\core\gxMaterial.cpp">
       <Filter>Header Files\source\engine\core</Filter>
     </ClCompile>
-    <ClCompile Include="source\scenes\ball.cpp">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClCompile>
     <ClCompile Include="source\scenes\gameScene.cpp">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="source\scenes\targetTrail.cpp">
       <Filter>Header Files\source\scenes</Filter>
     </ClCompile>
     <ClCompile Include="BallGame.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game\ball.cpp">
+      <Filter>Header Files\source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game\entityManager.cpp">
+      <Filter>Header Files\source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game\explossion.cpp">
+      <Filter>Header Files\source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game\targetTrail.cpp">
+      <Filter>Header Files\source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\Sprite.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\core\Sprite2Dx.cpp">
+      <Filter>Header Files\source\engine\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -9,12 +9,11 @@
 #include "../engine/core/FontManager.h"
 #include <string.h>
 #include "../engine/util/gxDebug.h"
-//#include "../SoundEngine/SoundEngine.h"
 #include "../engine/core/TextureManager.h"
 
 #include "../engine/renderer/rendererGL10.h"
 #include "../engine/core/object3d.h"
-#include "../scenes/playerData.h"
+#include "../game/playerData.h"
 
 
 class CommonData
