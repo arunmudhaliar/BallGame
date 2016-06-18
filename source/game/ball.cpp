@@ -76,16 +76,17 @@ void ball::updatePhysics(float dt)
 {
 	//F = M*A
 	float inverseMass=1.0f;
-	vector3f acc(m_cForce*inverseMass);
-	vector3f vel(acc*dt);
+	vector2f acc(m_cForce*inverseMass);
+	vector2f vel(acc*dt);
 
 	m_cVelocity = m_cVelocity+vel;
-	vector3f pos(getPosition());
-	float speed=(m_cVelocity*dt).length();
-	pos=pos-getYAxis()*speed;
+	vector2f pos(getPosition2());
+	//float speed=(m_cVelocity*dt).length();
+	//pos=pos-getYAxis()*speed;
+	auto displacement = m_cVelocity*dt;
+	pos = pos + m_cVelocity;
 
-
-	m_cVelocity=m_cVelocity*0.95f;
+	m_cVelocity=m_cVelocity*0.9f;
 	clearForce();
 
 	setPosition(pos);
@@ -96,7 +97,7 @@ void ball::clearForce()
 	m_cForce.zero();
 }
 
-void ball::addForce(vector3f force)
+void ball::addForce(vector2f force)
 {
 	m_cForce=m_cForce+force;
 }

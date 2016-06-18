@@ -21,7 +21,9 @@ public:
 
 	bool isAnyPath()	{ return m_cPath.size() != 0;	}
 
-	vector2f getTop();
+	vector2f getTop(int count=1);
+	bool isReachedNearTop(vector2f& pt, float collisionRadius, float& t, int count=1);
+	void popTop(int count=1);
 
 private:
 	bool isAngleUnderThreshold(float x, float y);

@@ -5,6 +5,7 @@ gameScene::gameScene() :
 Scene(1)
 {
     m_pTouchPtr=NULL;
+	setGameState(State_Idle);
 }
 
 gameScene::~gameScene()
@@ -109,7 +110,23 @@ void gameScene::onUpdate(unsigned int dtm)
 		//check if the ball reached the top point in path
 		if (!m_cPathGenerator.isAnyPath()) break;
 
-
+		auto targetPos = m_cPathGenerator.getTop(PATH_AVG_COUNT);
+		auto ballPos = m_cBall.getPosition2();
+		float t = 0.0f;
+		if (m_cPathGenerator.isReachedNearTop(ballPos, 5.0f, t, PATH_AVG_COUNT))
+		{
+			m_cPathGenerator.popTop(PATH_AVG_COUNT);
+			if (m_cPathGenerator.getPathCount()==0)
+			{
+				setGameState(State_Idle);
+			}
+		}
+		else
+		{
+			auto diff = targetPos - ballPos;
+			//diff.normalize();
+			m_cBall.addForce(diff);
+		}
 		break;
 	}
 	case State_EndSimulation:

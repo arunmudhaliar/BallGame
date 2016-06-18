@@ -40,7 +40,9 @@ public:
 	vector2<T> operator*(const int n)		{	return vector2<T>(x*n, y*n);	}
 	vector2<T> operator*(const float n)		{	return vector2<T>(x*n, y*n);	}
 	
-    
+	vector2<T> operator/(const int n)		{ return vector2<T>(x/n, y/n); }
+	vector2<T> operator/(const float n)		{ return vector2<T>(x/n, y/n); }
+
 	void operator/=(const int n)		{	x/=n, y/=n;	}
 	void operator/=(const float n)		{	x/=n, y/=n;	}
 	void operator*=(const int n)		{	x*=n, y*=n;	}

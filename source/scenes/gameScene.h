@@ -8,6 +8,8 @@
 #include "../game/targetTrail.h"
 #include "../game/pathGenerator.h"
 
+#define PATH_AVG_COUNT 5
+
 class gameScene : public Scene, public MEntityObserver
 {
 public:

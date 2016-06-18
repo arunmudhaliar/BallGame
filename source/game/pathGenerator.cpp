@@ -46,7 +46,7 @@ void pathGenerator::doPath(float x, float y)
 
 void pathGenerator::doEndPath()
 {
-	m_cPath.clear();
+	//m_cPath.clear();
 }
 
 void pathGenerator::drawPath()
@@ -85,10 +85,42 @@ bool pathGenerator::isAngleUnderThreshold(float x, float y)
 	return (rotation >= m_iThresholdAngle);
 }
 
-vector2f pathGenerator::getTop()
+vector2f pathGenerator::getTop(int count)
 {
-	if (isAnyPath())
-		return m_cPath[0];
+	if (count > m_cPath.size())
+	{
+		count = m_cPath.size();
+	}
 
-	return vector2f();
+	vector2f outPut;
+	for (int x = 0; x < count; x++)
+	{
+		outPut += m_cPath[x];
+	}
+	return outPut/count;
+}
+
+bool pathGenerator::isReachedNearTop(vector2f& pt, float collisionRadius, float& t, int count)
+{
+	t = 0.0f;
+	if (!isAnyPath()) return false;
+
+	auto diff = pt - getTop(count);
+	auto lengthSq = diff.lengthSquared();
+	auto collision_radiusSq = collisionRadius*collisionRadius;
+	t = lengthSq / collision_radiusSq;
+	return (lengthSq < collision_radiusSq);
+}
+
+void pathGenerator::popTop(int count)
+{
+	if (count > m_cPath.size())
+	{
+		count = m_cPath.size();
+	}
+
+	for (int x = 0; x < count; x++)
+	{
+		m_cPath.erase(m_cPath.begin());
+	}
 }

@@ -15,11 +15,11 @@ public:
 
 	void updatePhysics(float dt);
 	void clearForce();
-	void addForce(vector3f force);
+	void addForce(vector2f force);
 
 private:
 	void readHeader(gxFile& file);
 
-	vector3f m_cForce;
-	vector3f m_cVelocity;
+	vector2f m_cForce;
+	vector2f m_cVelocity;
 };
