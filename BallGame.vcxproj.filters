@@ -237,6 +237,9 @@
     <ClInclude Include="source\engine\sceneManager\SceneManager.h">
       <Filter>Header Files\source\engine\sceneManager</Filter>
     </ClInclude>
+    <ClInclude Include="source\game\pathGenerator.h">
+      <Filter>Header Files\source\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -391,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="source\engine\sceneManager\SceneManager.cpp">
       <Filter>Header Files\source\engine\sceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game\pathGenerator.cpp">
+      <Filter>Header Files\source\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

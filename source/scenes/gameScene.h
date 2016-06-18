@@ -6,10 +6,20 @@
 #include "../game/ball.h"
 #include "../game/entityManager.h"
 #include "../game/targetTrail.h"
+#include "../game/pathGenerator.h"
 
 class gameScene : public Scene, public MEntityObserver
 {
 public:
+
+	enum kGameState
+	{
+		State_Idle,
+		State_EditPath,
+		State_Simulate,
+		State_EndSimulation,
+	};
+
 	gameScene();
 	~gameScene();
 	
@@ -49,6 +59,9 @@ public:
     void onChildPoped(Scene* childscene, int msg){};
     void onReloadOpneGLResources();
 
+	void setGameState(kGameState state);
+	void onGameStateChange();
+
     CTextureManager m_cTextureManager;
     
     void* m_pTouchPtr;
@@ -62,5 +75,7 @@ public:
 	entityManager m_cEntityManager;
 	bool m_bszKeyBuffers[256];
 
-	float m_cRotation;
+	pathGenerator m_cPathGenerator;
+
+	kGameState m_eGameState;
 };

@@ -38,6 +38,7 @@ bool gameScene::loadResource(int userdefined)
 	m_cBorderWall.recalculateTile();
 
 	m_cEntityManager.init(this);
+	m_cPathGenerator.init(m_cTextureManager);
 
 	getCommonData()->getPlayerData()->resetScores();
 
@@ -90,6 +91,32 @@ void gameScene::onUpdate(unsigned int dtm)
 	m_cBall.update(dt);
 	m_cTargetTrailEffect.update(dt);
 	m_cEntityManager.update(dt);
+
+	switch (m_eGameState)
+	{
+	case State_Idle:
+	{
+		break;
+	}
+	case State_EditPath:
+	{
+		break;
+	}
+	case State_Simulate:
+	{
+		m_cBall.updatePhysics(dt);
+
+		//check if the ball reached the top point in path
+		if (!m_cPathGenerator.isAnyPath()) break;
+
+
+		break;
+	}
+	case State_EndSimulation:
+	{
+		break;
+	}
+	}
 }
 
 void gameScene::onRender()
@@ -108,15 +135,16 @@ void gameScene::onRender()
 	m_cEntityManager.render(*objectBase::getRenderer()->getViewMatrix());
 	m_cBorderWall.draw(*objectBase::getRenderer()->getViewMatrix());
 	m_cBall.render(*objectBase::getRenderer()->getViewMatrix());
+	m_cPathGenerator.drawPath();
 	m_cTargetTrailEffect.drawTrail();
 	glPopMatrix();
 
     char buffer[128];
-	sprintf(buffer, "fps = %2.2f\n\n\nSCORE = %d / %d\nrot=%f", 
+	sprintf(buffer, "fps = %2.2f\n\n\nSCORE = %d / %d\nrot=%d", 
 					Timer::getFPS(), 
 					getCommonData()->getPlayerData()->m_iCurrentScore,
 					getCommonData()->getPlayerData()->m_iHighScore,
-					m_cRotation);
+					m_cPathGenerator.getPathCount());
 
     getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);
 
@@ -189,13 +217,69 @@ void gameScene::onKeyUp(int keyCode)
 
 void gameScene::onTouchBegin(int x, int y, void* touchPtr)
 {
+	if (m_eGameState == State_Idle)
+	{
+		setGameState(State_EditPath);
+		m_cPathGenerator.doBeginPath();
+		m_cPathGenerator.doPath(x, y);
+	}
 }
 
 void gameScene::onTouchMoved(int x, int y, void* touchPtr)
 {
-	m_cTargetTrailEffect.calculateTrail(m_cBall.getPosition2(), vector2f(x, y));
+	if (m_eGameState == State_Idle)
+	{
+		m_cTargetTrailEffect.calculateTrail(m_cBall.getPosition2(), vector2f(x, y));
+	}
+
+	if (m_eGameState == State_EditPath)
+	{
+		int flag = *(int*)touchPtr;
+		if ((MK_LBUTTON&flag))
+		{
+			m_cPathGenerator.doPath(x, y);
+		}
+	}
 }
 
 void gameScene::onTouchEnd(int x, int y, bool bProcessed, void* touchPtr)
 {
+	if (m_eGameState == State_EditPath)
+	{
+		m_cPathGenerator.doPath(x, y);
+		m_cPathGenerator.doEndPath();
+		setGameState(State_Simulate);
+	}
+}
+
+void gameScene::setGameState(kGameState state)
+{
+	if (m_eGameState != state)
+	{
+		m_eGameState = state;
+		onGameStateChange();
+	}
+}
+
+void gameScene::onGameStateChange()
+{
+	switch (m_eGameState)
+	{
+	case State_Idle:
+	{
+		break;
+	}
+	case State_EditPath:
+	{
+		break;
+	}
+	case State_Simulate:
+	{
+		break;
+	}
+	case State_EndSimulation:
+	{
+		break;
+	}
+	}
 }

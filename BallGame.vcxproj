@@ -138,6 +138,7 @@
     <ClInclude Include="source\game\ball.h" />
     <ClInclude Include="source\game\entityManager.h" />
     <ClInclude Include="source\game\explossion.h" />
+    <ClInclude Include="source\game\pathGenerator.h" />
     <ClInclude Include="source\game\playerData.h" />
     <ClInclude Include="source\game\targetTrail.h" />
     <ClInclude Include="source\scenes\gameStatsScreen.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="source\game\ball.cpp" />
     <ClCompile Include="source\game\entityManager.cpp" />
     <ClCompile Include="source\game\explossion.cpp" />
+    <ClCompile Include="source\game\pathGenerator.cpp" />
     <ClCompile Include="source\game\targetTrail.cpp" />
     <ClCompile Include="source\scenes\gameStatsScreen.cpp" />
     <ClCompile Include="source\scenes\mainmenu.cpp" />
