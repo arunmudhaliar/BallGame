@@ -124,7 +124,8 @@ void gameScene::onUpdate(unsigned int dtm)
 		else
 		{
 			auto diff = targetPos - ballPos;
-			//diff.normalize();
+			diff.normalize();
+			diff = diff*BALL_SPEED;
 			m_cBall.addForce(diff);
 		}
 		break;
@@ -300,3 +301,138 @@ void gameScene::onGameStateChange()
 	}
 	}
 }
+
+#include "../engine/util/util.h"
+
+void checkCollision(vector2f newPos)
+{
+	int collision_check_cntr = 5;
+	while (collision_check_cntr--)
+	{
+		//oldPos = newPos;
+		vector2f avgPos;
+		int cnt = 0;
+		float ACTOR_COLLISION_RADIUS = 10;
+		float m_xActorRadiusSq = 10 * 10;
+		//circle-rectangle collision
+		vector2f left;// (tile->getLeftWorld());
+		vector2f right;// (tile->getRightWorld());
+		vector2f top;// (tile->getTopWorld());
+		vector2f bottom;// (tile->getBottomWorld());
+
+		//check for penitration
+		bool bPenitration = true;
+		if (newPos.x<left.x || newPos.y<top.y || newPos.x>right.x || newPos.y>bottom.y)
+			bPenitration = false;
+
+		//                    if(bPenitration)
+		//                    {
+		//                        DEBUG_PRINT("=======================PENITRATION OCCURED=================");
+		//                    }
+
+		vector2f closestPt[4];
+
+		closestPt[0] = (gxUtil::closestPointOnLine(newPos, left, top));
+		closestPt[1] = (gxUtil::closestPointOnLine(newPos, top, right));
+		closestPt[2] = (gxUtil::closestPointOnLine(newPos, right, bottom));
+		closestPt[3] = (gxUtil::closestPointOnLine(newPos, bottom, left));
+
+		//which one is the closest
+		int closest_length = GX_MAX_INT;
+		int closest_index = -1;
+
+		for (int l = 0; l < 4; l++)
+		{
+			vector2f diff(newPos - closestPt[l]);
+			__int64 length = diff.lengthSquared();
+			if (length < closest_length)
+			{
+				closest_length = length;
+				closest_index = l;
+
+				if (bPenitration)
+				{
+					diff = -diff;
+				}
+
+				if (closest_length <= m_xActorRadiusSq)
+				{
+					//collision occured
+					diff.normalize();
+					float val = ACTOR_COLLISION_RADIUS + 0.1f;
+					vector2f calc_Pos(closestPt[closest_index] + (diff*val));
+					avgPos += calc_Pos;
+					cnt++;
+					//DEBUG_PRINT("(%d), closestPt(%f, %f), calc_pos(%f, %f)", l, closestPtf[closest_index].x, closestPtf[closest_index].y, calc_Pos.x, calc_Pos.y);
+				}
+			}
+		}//for
+
+		if (cnt)
+		{
+			avgPos.x = avgPos.x / cnt;
+			avgPos.y = avgPos.y / cnt;
+			newPos = avgPos;	//this will cause the actor to come to a halt then move away, so i commented this line
+			//DEBUG_PRINT("collision occured %d, avgPos(%f, %f)", cnt, avgPosf.x, avgPosf.x);
+		}
+		else
+		{
+			break;	//break the loop
+		}
+	}
+}
+
+//chase cam
+/*
+void gearScenePreview::followObject(float dt, object3d* chasedObj)
+{
+	if(dt>0.1f || stopFollowCam) return;
+	if(chasedObj==NULL) return;
+
+	Camera* camera=previewWorld->getActiveCamera();
+	matrix4x4f* chasingObj=(matrix4x4f*)camera->getAttachedObject();
+	//matrix4x4f* chasedObj=(matrix4x4f*)this;
+	vector3f	eyeOff;
+	float speed=10.0f;
+
+	eyeOff = vector3f(0, -(chasedObj->getAABB().getLongestAxis()*0.5f + camera->getNear())*2.5f, 0);
+
+	vector3f    transformedEye((chasedObj->getAABB().getCenter()) + eyeOff);
+	vector3f    transformedLookAt(chasedObj->getAABB().getCenter());
+
+	vector3f    chasingObjPos(camera->getAttachedObject()->getWorldMatrix()->getPosition());
+	vector3f    chasedObjPos(chasedObj->getAABB().getCenter());
+	vector3f    lenV(transformedEye-chasingObjPos);
+	float       len=lenV.length();
+
+	if(len<=0.01f)
+	{
+	stopFollowCam=true;
+	return;
+	}
+
+	if(len>4000.0f)
+	{
+	float factor=4000.0f/len;
+	lenV=lenV*factor;
+	}
+
+	vector3f    updatedPos(chasingObjPos+lenV*(speed*dt));
+	vector3f forward(updatedPos-transformedLookAt);
+	forward.normalize();
+	vector3f up(0, 0, 1);
+	vector3f left(up.cross(forward));
+	left.normalize();
+	up=forward.cross(left);
+	up.normalize();
+
+	chasingObj->setXAxis(left);
+	chasingObj->setYAxis(up);
+	chasingObj->setZAxis(forward);
+	chasingObj->setPosition(updatedPos);
+
+	previewLight->getAttachedObject()->setPosition(updatedPos);
+
+	camera->updateCamera();
+}
+*/

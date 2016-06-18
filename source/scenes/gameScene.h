@@ -9,6 +9,7 @@
 #include "../game/pathGenerator.h"
 
 #define PATH_AVG_COUNT 5
+#define BALL_SPEED	200.0f
 
 class gameScene : public Scene, public MEntityObserver
 {

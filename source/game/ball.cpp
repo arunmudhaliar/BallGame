@@ -75,7 +75,7 @@ void ball::update(float dt)
 void ball::updatePhysics(float dt)
 {
 	//F = M*A
-	float inverseMass=1.0f;
+	float inverseMass=0.1f;
 	vector2f acc(m_cForce*inverseMass);
 	vector2f vel(acc*dt);
 

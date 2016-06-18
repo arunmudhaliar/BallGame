@@ -125,6 +125,7 @@
     <ClInclude Include="source\engine\util\gxFile.h" />
     <ClInclude Include="source\engine\util\objC_util.h" />
     <ClInclude Include="source\engine\util\pngLoader.h" />
+    <ClInclude Include="source\engine\util\util.h" />
     <ClInclude Include="source\engine\zlib-1.2.4\crc32.h" />
     <ClInclude Include="source\engine\zlib-1.2.4\deflate.h" />
     <ClInclude Include="source\engine\zlib-1.2.4\inffast.h" />
