@@ -1,5 +1,4 @@
-#ifndef GXDEBUG_H
-#define GXDEBUG_H
+#pragma once
 
 #include <stdio.h>
 
@@ -39,4 +38,3 @@ extern "C" {
     void DEBUG_DRAW_FILL_RECTf(float x, float y, float cx, float cy);
     void DEBUG_DRAW_FILL_RECT_ALPA(float x, float y, float cx, float cy);
 }
-#endif

@@ -1,6 +1,4 @@
-
-#ifndef SCENEFADER_H
-#define SCENEFADER_H
+#pragma once
 
 #include "CommonData.h"
 
@@ -32,5 +30,3 @@ private:
 	float m_cSpeed;
 	CommonData* m_pCommonData;
 };
-
-#endif

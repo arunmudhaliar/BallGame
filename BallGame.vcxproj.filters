@@ -186,9 +186,6 @@
     <ClInclude Include="source\engine\util\objC_util.h">
       <Filter>Header Files\source\engine\util</Filter>
     </ClInclude>
-    <ClInclude Include="source\scenes\gameStatsScreen.h">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClInclude>
     <ClInclude Include="source\engine\core\gxMesh.h">
       <Filter>Header Files\source\engine\core</Filter>
     </ClInclude>
@@ -208,15 +205,6 @@
       <Filter>Header Files\source\game</Filter>
     </ClInclude>
     <ClInclude Include="source\game\ball.h">
-      <Filter>Header Files\source\game</Filter>
-    </ClInclude>
-    <ClInclude Include="source\game\entityManager.h">
-      <Filter>Header Files\source\game</Filter>
-    </ClInclude>
-    <ClInclude Include="source\game\explossion.h">
-      <Filter>Header Files\source\game</Filter>
-    </ClInclude>
-    <ClInclude Include="source\game\playerData.h">
       <Filter>Header Files\source\game</Filter>
     </ClInclude>
     <ClInclude Include="source\engine\core\Sprite.h">
@@ -359,9 +347,6 @@
     <ClCompile Include="source\engine\zlib-1.2.4\zutil.c">
       <Filter>Header Files\source\engine\zlib-1.2.4</Filter>
     </ClCompile>
-    <ClCompile Include="source\scenes\gameStatsScreen.cpp">
-      <Filter>Header Files\source\scenes</Filter>
-    </ClCompile>
     <ClCompile Include="source\engine\core\gxMesh.cpp">
       <Filter>Header Files\source\engine\core</Filter>
     </ClCompile>
@@ -375,12 +360,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\game\ball.cpp">
-      <Filter>Header Files\source\game</Filter>
-    </ClCompile>
-    <ClCompile Include="source\game\entityManager.cpp">
-      <Filter>Header Files\source\game</Filter>
-    </ClCompile>
-    <ClCompile Include="source\game\explossion.cpp">
       <Filter>Header Files\source\game</Filter>
     </ClCompile>
     <ClCompile Include="source\game\targetTrail.cpp">

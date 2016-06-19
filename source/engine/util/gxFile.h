@@ -1,8 +1,6 @@
-#ifndef GXFILE_H
-#define GXFILE_H
+#pragma once
 
 #include "../core/types.h"
-//#include <fstream>
 
 class gxFile
 {
@@ -56,5 +54,3 @@ private:
 	FILE*		m_pFP;
 	EFILEMODE	m_eFileMode;
 };
-
-#endif

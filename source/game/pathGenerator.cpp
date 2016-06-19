@@ -2,7 +2,7 @@
 
 pathGenerator::pathGenerator()
 {
-	m_iThresholdAngle = 10;
+	m_iThresholdAngle = 5;
 }
 
 pathGenerator::~pathGenerator()

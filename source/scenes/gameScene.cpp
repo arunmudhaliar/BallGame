@@ -4,7 +4,6 @@
 gameScene::gameScene() :
 Scene(1)
 {
-    m_pTouchPtr=NULL;
 	m_bStopFollowCam = false;
 	m_bCollisionOccuredOnWall = false;
 	setGameState(State_Idle);
@@ -23,30 +22,18 @@ void gameScene::onInit()
     setFaderSpeed(0.5f);
     startFader(300);
     
-    m_pTouchPtr=NULL;
     loadResource(0);
 }
 
 bool gameScene::loadResource(int userdefined)
 {
-	memset(m_bszKeyBuffers, 0, sizeof(m_bszKeyBuffers));
-
 	m_cViewMatrix.identity();
 
 	m_cBall.load(getResourcePath("mesh//cube.preview"));
 	m_cTargetTrailEffect.init(m_cTextureManager);
 	m_cBorderWall.init(m_cTextureManager);
-	m_cEntityManager.init(this);
 	m_cPathGenerator.init(m_cTextureManager);
-
-	getCommonData()->getPlayerData()->resetScores();
-
 	return true;
-}
-
-void gameScene::onReloadOpneGLResources()
-{
-    Scene::onReloadOpneGLResources();
 }
 
 void gameScene::onSize(int cx, int cy)
@@ -61,23 +48,6 @@ void gameScene::onSize(int cx, int cy)
 	Scene::onSize(cx, cy);
 }
 
-void gameScene::onFixedUpdate(float dt)
-{
-    Scene::onFixedUpdate(dt);
-}
-
-void gameScene::onAnimationStart(unsigned int msg, float scale)
-{
-}
-
-void gameScene::onAnimation(unsigned int msg, float scale)
-{
-}
-
-void gameScene::onAnimationEnd(unsigned int msg, float scale)
-{
-}
-
 void gameScene::onUpdate(unsigned int dtm)
 {
 	Scene::onUpdate(dtm);
@@ -86,11 +56,8 @@ void gameScene::onUpdate(unsigned int dtm)
     float dt=(float)dtm/1000.0f;
     dt=min(dt, 0.05f);
 
-	processKeyInputs();
-
 	m_cBall.update(dt);
 	m_cTargetTrailEffect.update(dt);
-	m_cEntityManager.update(dt);
 
 	switch (m_eGameState)
 	{
@@ -189,78 +156,15 @@ void gameScene::onRender()
 	glPopMatrix();
 
     char buffer[128];
-	sprintf(buffer, "fps = %2.2f\n\n\nSCORE = %d / %d\nrot=%d", 
+	sprintf(buffer, "fps = %2.2f\n\n\nSCORE = %d / %d\npath=%d", 
 					Timer::getFPS(), 
 					getCommonData()->getPlayerData()->m_iCurrentScore,
 					getCommonData()->getPlayerData()->m_iHighScore,
 					m_cPathGenerator.getPathCount());
 
-    //getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);
+    getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);
 
 	Scene::onRender();
-}
-
-void gameScene::onExit()
-{
-	m_cEntityManager.reset();
-
-	Scene::onExit();
-}
-
-void gameScene::onPause()
-{
-	Scene::onPause();
-}
-
-void gameScene::onResume()
-{
-	resume();
-	Scene::onResume();
-}
-
-void gameScene::onTimer(unsigned int msg)
-{
-}
-
-void gameScene::onFaderComplete(unsigned int msg)
-{
-}
-
-void gameScene::processKeyInputs()
-{
-	if(m_bszKeyBuffers[38])	//up
-	{
-	}
-
-	if(m_bszKeyBuffers[37])	//left
-	{
-	}
-
-	if(m_bszKeyBuffers[39])	//right
-	{
-	}
-
-	if(m_bszKeyBuffers[32])
-	{
-	}
-}
-
-void gameScene::onPreUpdateEntity(entityBase* entity)
-{
-}
-
-void gameScene::onPostUpdateEntity(entityBase* entity)
-{
-}
-
-void gameScene::onKeyDown(int keyCode)
-{
-	m_bszKeyBuffers[keyCode]=true;
-}
-
-void gameScene::onKeyUp(int keyCode)
-{
-	m_bszKeyBuffers[keyCode]=false;
 }
 
 void gameScene::onTouchBegin(int x, int y, void* touchPtr)

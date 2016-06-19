@@ -42,7 +42,6 @@ private:
     {
 		m_pRendererPtr=NULL;
         m_cFontManager.reset(false);
-//        m_cSoundEngine.destroy();
 		GX_DELETE(m_pRendererPtr);
     }
 public:
@@ -58,8 +57,6 @@ public:
         setCommonResourcePath("./res/Common/");
         m_cFontManager.init(technique);
         loadFonts(false);
-     
-//        m_cSoundEngine.init();
     }
     
     void loadFonts(bool reload)
@@ -78,7 +75,6 @@ public:
     int getScreenHeight()   {   return m_iScreenHeight;     }
     
     Font* getArialBold15Font()      {   return m_pArialBld15Ptr;        }
-//    SoundEngine* getSoundEngine()       {   return &m_cSoundEngine;     }
     
     void shutDown()
     {
@@ -107,16 +103,12 @@ private:
     int m_iScreenWidth;
     int m_iScreenHeight;
 
-//    
-//    SoundEngine m_cSoundEngine; 
     FontManager m_cFontManager;
     Font* m_pArialBld15Ptr;
 
     bool m_bDontClearGLBuffer;
-
     rendererBase::ERENDERER m_eRenderingTechnique;
 	rendererBase* m_pRendererPtr;
-
 	HWND m_hWnd;
 	playerData m_cPlayerData;
 };

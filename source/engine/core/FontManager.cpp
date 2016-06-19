@@ -250,8 +250,8 @@ bool Font::drawString(const char* str, int x, int y, bool bCentered, bool bShado
     glEnableClientState(GL_VERTEX_ARRAY);
     glVertexPointer(2, GL_SHORT, 0, m_cszVertCoordList);
     
-    glActiveTexture(GL_TEXTURE0);
-    glClientActiveTexture(GL_TEXTURE0);
+    //glActiveTexture(GL_TEXTURE0);
+    //glClientActiveTexture(GL_TEXTURE0);
     glTexCoordPointer(2, GL_FLOAT, 0, m_cszTexCoordList);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, m_iTexID);
@@ -280,7 +280,7 @@ bool Font::drawString(const char* str, int x, int y, bool bCentered, bool bShado
     
     glDisable(GL_BLEND);    
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    glActiveTexture(GL_TEXTURE0);
+    //glActiveTexture(GL_TEXTURE0);
     glDisable(GL_TEXTURE_2D);
     glDisableClientState(GL_VERTEX_ARRAY);
     

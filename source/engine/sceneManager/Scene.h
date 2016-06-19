@@ -1,5 +1,4 @@
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once
 
 #include "../core/pxMath.h"
 #include "SceneManager.h"
@@ -108,5 +107,3 @@ private:
     unsigned int m_iAnimationMsg;
     bool m_bIsSoundEnginePausedOnPreviousState;
 };
-
-#endif

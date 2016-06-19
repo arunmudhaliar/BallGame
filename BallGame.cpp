@@ -9,7 +9,6 @@
 
 #include "source/scenes/mainmenu.h"
 #include "source/scenes/gameScene.h"
-#include "source/scenes/gameStatsScreen.h"
 
 #define MAX_LOADSTRING 100
 
@@ -159,17 +158,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		setResourcePath("");
 		Timer::init();
 		m_cSceneManager.init();
-#if defined (USE_ProgrammablePipeLine)
-		Scene::getCommonData()->init(NULL, false, rendererBase::gl_programmable_pipeline, hWnd);
-#else
 		Scene::getCommonData()->init(NULL, false, rendererBase::gl_fixed_pipeline, hWnd);
-#endif
-    
 		Scene::getCommonData()->setScreenSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		m_cSceneManager.resize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		m_cSceneManager.appendScene(new mainMenu());
 		m_cSceneManager.appendScene(new gameScene());
-		m_cSceneManager.appendScene(new gameStatsScreen());
 
 		m_cSceneManager.setActiveScene(m_cSceneManager.getSceneByID(0));
 	}

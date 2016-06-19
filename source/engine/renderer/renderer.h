@@ -1,5 +1,4 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+#pragma once
 
 #include "../core/glincludes.h"
 #include "../core/matrix4x4f.h"
@@ -67,4 +66,3 @@ public:
 	static ERENDERER g_eRenderingTechnique;
     static unsigned int g_nTrisRendered;
 };
-#endif
