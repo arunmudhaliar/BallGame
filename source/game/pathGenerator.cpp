@@ -52,9 +52,9 @@ void pathGenerator::doEndPath()
 void pathGenerator::drawPath()
 {
 	matrix4x4f temp;
-	for (auto pt : m_cPath)
+	for (int x=0;x<m_cPath.size();x++)
 	{
-		m_cPointSprite.draw(temp, &pt);
+		m_cPointSprite.draw(temp, &m_cPath[x]);
 	}
 }
 

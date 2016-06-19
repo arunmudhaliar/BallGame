@@ -243,6 +243,9 @@
     <ClInclude Include="source\engine\util\util.h">
       <Filter>Header Files\source\engine\util</Filter>
     </ClInclude>
+    <ClInclude Include="source\game\borderWall.h">
+      <Filter>Header Files\source\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -399,6 +402,9 @@
       <Filter>Header Files\source\engine\sceneManager</Filter>
     </ClCompile>
     <ClCompile Include="source\game\pathGenerator.cpp">
+      <Filter>Header Files\source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game\borderWall.cpp">
       <Filter>Header Files\source\game</Filter>
     </ClCompile>
   </ItemGroup>

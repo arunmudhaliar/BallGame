@@ -7,6 +7,7 @@
 #include "../game/entityManager.h"
 #include "../game/targetTrail.h"
 #include "../game/pathGenerator.h"
+#include "../game/borderWall.h"
 
 #define PATH_AVG_COUNT 5
 #define BALL_SPEED	200.0f
@@ -64,6 +65,7 @@ public:
 
 	void setGameState(kGameState state);
 	void onGameStateChange();
+	void followObject(float dt, objectBase* chasedObj);
 
     CTextureManager m_cTextureManager;
     
@@ -73,7 +75,7 @@ public:
 
 	ball m_cBall;
 	targetTrail m_cTargetTrailEffect;
-	Sprite2Dx m_cBorderWall;
+	borderWall m_cBorderWall;
 
 	entityManager m_cEntityManager;
 	bool m_bszKeyBuffers[256];
@@ -81,4 +83,5 @@ public:
 	pathGenerator m_cPathGenerator;
 
 	kGameState m_eGameState;
+	bool m_bStopFollowCam;
 };

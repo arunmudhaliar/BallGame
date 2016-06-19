@@ -21,14 +21,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -137,6 +137,7 @@
     <ClInclude Include="source\engine\zlib-1.2.4\zlib.h" />
     <ClInclude Include="source\engine\zlib-1.2.4\zutil.h" />
     <ClInclude Include="source\game\ball.h" />
+    <ClInclude Include="source\game\borderWall.h" />
     <ClInclude Include="source\game\entityManager.h" />
     <ClInclude Include="source\game\explossion.h" />
     <ClInclude Include="source\game\pathGenerator.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="source\engine\zlib-1.2.4\uncompr.c" />
     <ClCompile Include="source\engine\zlib-1.2.4\zutil.c" />
     <ClCompile Include="source\game\ball.cpp" />
+    <ClCompile Include="source\game\borderWall.cpp" />
     <ClCompile Include="source\game\entityManager.cpp" />
     <ClCompile Include="source\game\explossion.cpp" />
     <ClCompile Include="source\game\pathGenerator.cpp" />

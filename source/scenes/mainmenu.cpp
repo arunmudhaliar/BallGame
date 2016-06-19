@@ -86,9 +86,9 @@ void mainMenu::onRender()
 	glPushMatrix();
 	glPopMatrix();
 
-    char buffer[128];
-	sprintf(buffer, "BALL GAME\n\n\n\nPress 'Space' to play the game... 'ESc' to exit.");
-	getCommonData()->getArialBold15Font()->drawString(buffer, getCommonData()->getScreenWidth()*0.5f, getCommonData()->getScreenHeight()*0.5f, true);
+    //char buffer[128];
+	//sprintf(buffer, "BALL GAME\n\n\n\nPress 'Space' to play the game... 'ESc' to exit.");
+	//getCommonData()->getArialBold15Font()->drawString(buffer, getCommonData()->getScreenWidth()*0.5f, getCommonData()->getScreenHeight()*0.5f, true);
 
 	Scene::onRender();
 }

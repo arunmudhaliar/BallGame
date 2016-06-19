@@ -17,8 +17,9 @@ void Sprite2Dx::draw(const matrix4x4f& parentTM, vector2f* pos)
     
 	if (m_cTexture.getTextureType() != gxTexture::TEX_UNDEFINED)
 	{
-		glActiveTexture(GL_TEXTURE0);
-		glClientActiveTexture(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+		//glActiveTexture(GL_TEXTURE0);
+		//glClientActiveTexture(GL_TEXTURE0);
 		glTexCoordPointer(2, GL_FLOAT, 0, m_cszTexCoord);
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, m_cTexture.getTextureID());
@@ -57,7 +58,7 @@ void Sprite2Dx::draw(const matrix4x4f& parentTM, vector2f* pos)
         if(pos)
             cRenderMatrix.setPosition(pos->x, pos->y, 0.0f);
         else
-            cRenderMatrix = (parentTM * (matrix4x4f)(*this));
+            cRenderMatrix = (/*parentTM **/ (matrix4x4f)(*this));
 
 		glPushMatrix();
         glMultMatrixf(cRenderMatrix.getMatrix());
@@ -81,7 +82,7 @@ void Sprite2Dx::draw(const matrix4x4f& parentTM, vector2f* pos)
 	{	
 		glDisable(GL_BLEND);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		glActiveTexture(GL_TEXTURE0);
+		//glActiveTexture(GL_TEXTURE0);
 		glDisable(GL_TEXTURE_2D);
 	}
 	

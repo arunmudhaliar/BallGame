@@ -5,6 +5,7 @@ gameScene::gameScene() :
 Scene(1)
 {
     m_pTouchPtr=NULL;
+	m_bStopFollowCam = false;
 	setGameState(State_Idle);
 }
 
@@ -33,11 +34,7 @@ bool gameScene::loadResource(int userdefined)
 
 	m_cBall.load(getResourcePath("mesh//cube.preview"));
 	m_cTargetTrailEffect.init(m_cTextureManager);
-	m_cBorderWall.setOffset(0, 0);
-	m_cBorderWall.loadTexture(&m_cTextureManager, getResourcePath("textures//circleoffire.png"));
-	m_cBorderWall.setScale(10, 10, 1);
-	m_cBorderWall.recalculateTile();
-
+	m_cBorderWall.init(m_cTextureManager);
 	m_cEntityManager.init(this);
 	m_cPathGenerator.init(m_cTextureManager);
 
@@ -58,6 +55,7 @@ void gameScene::onSize(int cx, int cy)
 	auto sz = getCommonData()->getRendererPtr()->getViewPortSz();
 	m_cBorderWall.set2DPosition(sz.x*0.5f, sz.y*0.5f);
 	m_cBall.set2DPosition(sz.x*0.5f, sz.y*0.5f);
+	m_bStopFollowCam = false;
 
 	Scene::onSize(cx, cy);
 }
@@ -135,6 +133,8 @@ void gameScene::onUpdate(unsigned int dtm)
 		break;
 	}
 	}
+
+	followObject(dt, &m_cBall);
 }
 
 void gameScene::onRender()
@@ -150,8 +150,9 @@ void gameScene::onRender()
 #endif
     
 	glPushMatrix();
-	m_cEntityManager.render(*objectBase::getRenderer()->getViewMatrix());
-	m_cBorderWall.draw(*objectBase::getRenderer()->getViewMatrix());
+	glMultMatrixf(objectBase::getRenderer()->getViewMatrix()->getInverse().getMatrix());
+	//m_cEntityManager.render(*objectBase::getRenderer()->getViewMatrix());
+	m_cBorderWall.drawWall();
 	m_cBall.render(*objectBase::getRenderer()->getViewMatrix());
 	m_cPathGenerator.drawPath();
 	m_cTargetTrailEffect.drawTrail();
@@ -164,7 +165,7 @@ void gameScene::onRender()
 					getCommonData()->getPlayerData()->m_iHighScore,
 					m_cPathGenerator.getPathCount());
 
-    getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);
+    //getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);
 
 	Scene::onRender();
 }
@@ -239,15 +240,21 @@ void gameScene::onTouchBegin(int x, int y, void* touchPtr)
 	{
 		setGameState(State_EditPath);
 		m_cPathGenerator.doBeginPath();
-		m_cPathGenerator.doPath(x, y);
+
+		matrix4x4f* view = objectBase::getRenderer()->getViewMatrix();
+		auto viewPos = view->getPosition2();
+		m_cPathGenerator.doPath(x+viewPos.x, y+viewPos.y);
 	}
 }
 
 void gameScene::onTouchMoved(int x, int y, void* touchPtr)
 {
+	matrix4x4f* view = objectBase::getRenderer()->getViewMatrix();
+	auto viewPos = view->getPosition2();
+
 	if (m_eGameState == State_Idle)
 	{
-		m_cTargetTrailEffect.calculateTrail(m_cBall.getPosition2(), vector2f(x, y));
+		m_cTargetTrailEffect.calculateTrail(m_cBall.getPosition2(), vector2f(x+viewPos.x, y+viewPos.y));
 	}
 
 	if (m_eGameState == State_EditPath)
@@ -255,7 +262,7 @@ void gameScene::onTouchMoved(int x, int y, void* touchPtr)
 		int flag = *(int*)touchPtr;
 		if ((MK_LBUTTON&flag))
 		{
-			m_cPathGenerator.doPath(x, y);
+			m_cPathGenerator.doPath(x+viewPos.x, y+viewPos.y);
 		}
 	}
 }
@@ -264,7 +271,10 @@ void gameScene::onTouchEnd(int x, int y, bool bProcessed, void* touchPtr)
 {
 	if (m_eGameState == State_EditPath)
 	{
-		m_cPathGenerator.doPath(x, y);
+		matrix4x4f* view = objectBase::getRenderer()->getViewMatrix();
+		auto viewPos = view->getPosition2();
+
+		m_cPathGenerator.doPath(x+viewPos.x, y+viewPos.y);
 		m_cPathGenerator.doEndPath();
 		setGameState(State_Simulate);
 	}
@@ -293,6 +303,7 @@ void gameScene::onGameStateChange()
 	}
 	case State_Simulate:
 	{
+		m_bStopFollowCam = false;
 		break;
 	}
 	case State_EndSimulation:
@@ -383,56 +394,40 @@ void checkCollision(vector2f newPos)
 }
 
 //chase cam
-/*
-void gearScenePreview::followObject(float dt, object3d* chasedObj)
+
+void gameScene::followObject(float dt, objectBase* chasedObj)
 {
-	if(dt>0.1f || stopFollowCam) return;
+	//return;
+
+	if(dt>0.1f || m_bStopFollowCam) return;
 	if(chasedObj==NULL) return;
 
-	Camera* camera=previewWorld->getActiveCamera();
-	matrix4x4f* chasingObj=(matrix4x4f*)camera->getAttachedObject();
-	//matrix4x4f* chasedObj=(matrix4x4f*)this;
-	vector3f	eyeOff;
-	float speed=10.0f;
+	matrix4x4f* chasingObj=objectBase::getRenderer()->getViewMatrix();
 
-	eyeOff = vector3f(0, -(chasedObj->getAABB().getLongestAxis()*0.5f + camera->getNear())*2.5f, 0);
+	auto viewportSz = getCommonData()->getRendererPtr()->getViewPortSz();
+	vector3f	eyeOff(-viewportSz.x*0.5f, -viewportSz.y*0.5f, -5);
 
-	vector3f    transformedEye((chasedObj->getAABB().getCenter()) + eyeOff);
-	vector3f    transformedLookAt(chasedObj->getAABB().getCenter());
-
-	vector3f    chasingObjPos(camera->getAttachedObject()->getWorldMatrix()->getPosition());
-	vector3f    chasedObjPos(chasedObj->getAABB().getCenter());
+	vector3f    transformedEye((chasedObj->getPosition()) + eyeOff);
+	vector3f    chasingObjPos(chasingObj->getPosition());
 	vector3f    lenV(transformedEye-chasingObjPos);
 	float       len=lenV.length();
 
+	if(len==0.0f)
+		return;
+
 	if(len<=0.01f)
 	{
-	stopFollowCam=true;
-	return;
+		m_bStopFollowCam=true;
+		return;
 	}
 
 	if(len>4000.0f)
 	{
-	float factor=4000.0f/len;
-	lenV=lenV*factor;
+		float factor=4000.0f/len;
+		lenV=lenV*factor;
 	}
 
+	float speed=10.0f;
 	vector3f    updatedPos(chasingObjPos+lenV*(speed*dt));
-	vector3f forward(updatedPos-transformedLookAt);
-	forward.normalize();
-	vector3f up(0, 0, 1);
-	vector3f left(up.cross(forward));
-	left.normalize();
-	up=forward.cross(left);
-	up.normalize();
-
-	chasingObj->setXAxis(left);
-	chasingObj->setYAxis(up);
-	chasingObj->setZAxis(forward);
 	chasingObj->setPosition(updatedPos);
-
-	previewLight->getAttachedObject()->setPosition(updatedPos);
-
-	camera->updateCamera();
 }
-*/
