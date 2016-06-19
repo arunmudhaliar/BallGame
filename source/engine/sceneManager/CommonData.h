@@ -12,7 +12,6 @@
 
 #include "../renderer/rendererGL10.h"
 #include "../core/object3d.h"
-#include "../../game/playerData.h"
 
 class CommonData
 {
@@ -97,8 +96,6 @@ public:
 	void setRendererPtr(rendererBase* ptr)	{	m_pRendererPtr=ptr;		}
 	rendererBase* getRendererPtr()			{	return m_pRendererPtr;	}
 
-	playerData* getPlayerData()		{	return &m_cPlayerData;	}
-
 private:
     int m_iScreenWidth;
     int m_iScreenHeight;
@@ -110,5 +107,4 @@ private:
     rendererBase::ERENDERER m_eRenderingTechnique;
 	rendererBase* m_pRendererPtr;
 	HWND m_hWnd;
-	playerData m_cPlayerData;
 };

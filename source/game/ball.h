@@ -1,6 +1,5 @@
 #pragma once
 
-#include "entityManager.h"
 #include "../engine/core/gxMesh.h"
 
 class ball : public gxMesh

@@ -51,7 +51,7 @@ void pathGenerator::doEndPath()
 void pathGenerator::drawPath()
 {
 	matrix4x4f temp;
-	for (int x=0;x<m_cPath.size();x++)
+	for (int x=0;x<(int)m_cPath.size();x++)
 	{
 		m_cPointSprite.draw(temp, &m_cPath[x]);
 	}
@@ -86,7 +86,7 @@ bool pathGenerator::isAngleUnderThreshold(float x, float y)
 
 vector2f pathGenerator::getTop(int count)
 {
-	if (count > m_cPath.size())
+	if (count > (int)m_cPath.size())
 	{
 		count = m_cPath.size();
 	}
@@ -113,7 +113,7 @@ bool pathGenerator::isReachedNearTop(vector2f& pt, float collisionRadius, float&
 
 void pathGenerator::popTop(int count)
 {
-	if (count > m_cPath.size())
+	if (count > (int)m_cPath.size())
 	{
 		count = m_cPath.size();
 	}

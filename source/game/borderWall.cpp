@@ -1,6 +1,7 @@
 #include "borderWall.h"
 #include "../engine/core/object3d.h"
 #include "../engine/util/util.h"
+#include "../engine/sceneManager/Scene.h"
 
 borderWall::borderWall():
 Sprite2Dx()
@@ -49,8 +50,6 @@ void borderWall::drawWall()
 	glEnd();
 }
 
-#include "../engine/sceneManager/Scene.h"
-
 bool borderWall::checkCollision(vector2f& newPos)
 {
 	auto viewportSz = Scene::getCommonData()->getRendererPtr()->getViewPortSz();
@@ -98,13 +97,13 @@ bool borderWall::checkCollision(vector2f& newPos)
 		debugPt[3] = closestPt[3];
 
 		//which one is the closest
-		int closest_length = GX_MAX_INT;
+		float closest_length = (float)GX_MAX_INT;
 		int closest_index = -1;
 
 		for (int l = 0; l < 4; l++)
 		{
 			vector2f diff(newPos - closestPt[l]);
-			int length = diff.lengthSquared();
+			float length = diff.lengthSquared();
 			if (length < closest_length)
 			{
 				closest_length = length;

@@ -20,7 +20,7 @@ int read_png_file(const char* file_name, bool& bAlpha, unsigned int& cx, unsigne
 {
 	int width, height;
 	png_byte color_type;
-	png_byte color_bpp;
+	//png_byte color_bpp;
 	png_byte bit_depth;
     png_byte header[8];    // 8 is the maximum size that can be checked
 

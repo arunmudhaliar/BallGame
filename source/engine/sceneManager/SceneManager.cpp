@@ -216,7 +216,7 @@ bool SceneManager::removeScene(Scene* scene)
 
 Scene* SceneManager::removeScene(unsigned int index)
 {
-	if(index>=(int)m_cszSceneList.getSize()) return NULL;
+	if(index>=(unsigned int)m_cszSceneList.getSize()) return NULL;
 	
 	Scene* scene=m_cszSceneList[index];
 	scene->onExit();
@@ -255,7 +255,7 @@ Scene* SceneManager::getSceneByID(unsigned int sceneID)
 
 Scene* SceneManager::getSceneByIndex(unsigned int index)
 {
-	if(index>=(int)m_cszSceneList.getSize()) return NULL;
+	if(index>=(unsigned int)m_cszSceneList.getSize()) return NULL;
 
 	return m_cszSceneList[index];
 }

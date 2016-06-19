@@ -1,7 +1,6 @@
 #include "renderer.h"
 #include "..\core\rect.h"
 
-
 rendererBase::ERENDERER rendererBase::g_eRenderingTechnique=gl_fixed_pipeline;
 unsigned int rendererBase::g_nTrisRendered=0;
 
@@ -128,17 +127,8 @@ bool rendererBase::killGL()
 
 void rendererBase::setViewPort(int x, int y, int cx, int cy)
 {
-	bxRectf viewportRect(x, y, cx, cy);
+	bxRectf viewportRect((float)x, (float)y, (float)cx, (float)cy);
 	vector2f centerAlignedPos(viewportRect.m_pos - viewportRect.m_size*0.5f);
-	/*m_cOrthogonalProjectionMatrix.setOrtho(
-		centerAlignedPos.x,
-		centerAlignedPos.x + viewportRect.m_size.x,
-		centerAlignedPos.y + viewportRect.m_size.y,
-		centerAlignedPos.y,
-		-100.0f, 1000.0f);*/
-	//viewPortRectangle.set(x, y, cx, cy);
-	//CHECK_GL_ERROR(glViewport((int)x, (int)y, (int)cx, (int)cy));
-
     m_cOrthogonalProjectionMatrix.setOrtho(0.0f, (float)cx, (float)cy, 0.0f, 0.0f, 10.0f);
 	m_cViewPortSz.set((float)cx, (float)cy);
 	glViewport(x, y, cx, cy);

@@ -39,10 +39,8 @@ bool gameScene::loadResource(int userdefined)
 void gameScene::onSize(int cx, int cy)
 {
 	getCommonData()->getRendererPtr()->setViewPort(0, 0, cx, cy);
-
-	auto sz = getCommonData()->getRendererPtr()->getViewPortSz();
-	m_cBorderWall.set2DPosition(sz.x*0.5f, sz.y*0.5f);
-	m_cBall.set2DPosition(sz.x*0.5f, sz.y*0.5f);
+	m_cBorderWall.set2DPosition(cx*0.5f, cy*0.5f);
+	m_cBall.set2DPosition(cx*0.5f, cy*0.5f);
 	m_bStopFollowCam = false;
 
 	Scene::onSize(cx, cy);
@@ -156,10 +154,8 @@ void gameScene::onRender()
 	glPopMatrix();
 
     char buffer[128];
-	sprintf(buffer, "fps = %2.2f\n\n\nSCORE = %d / %d\npath=%d", 
+	sprintf(buffer, "fps = %2.2f\n\n\npath=%d", 
 					Timer::getFPS(), 
-					getCommonData()->getPlayerData()->m_iCurrentScore,
-					getCommonData()->getPlayerData()->m_iHighScore,
 					m_cPathGenerator.getPathCount());
 
     getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);

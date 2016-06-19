@@ -26,8 +26,6 @@ bool mainMenu::loadResource(int userdefined)
 	m_cViewMatrix.identity();
 	m_cViewMatrix.inverse();
 
-	getCommonData()->getPlayerData()->readFromPref();
-
 	return true;
 }
 
