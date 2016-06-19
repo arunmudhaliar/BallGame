@@ -13,7 +13,7 @@ targetTrail::~targetTrail()
 void targetTrail::init(CTextureManager& textureManager)
 {
 	setOffset(1, 0);
-	loadTexture(&textureManager, getResourcePath("textures//circleoffire.png"));
+	loadTexture(&textureManager, getResourcePath("textures//arrow-test.png"));
 }
 
 void targetTrail::calculateTrail(vector2f startPos, vector2f endPos)

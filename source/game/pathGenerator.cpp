@@ -46,7 +46,6 @@ void pathGenerator::doPath(float x, float y)
 
 void pathGenerator::doEndPath()
 {
-	//m_cPath.clear();
 }
 
 void pathGenerator::drawPath()

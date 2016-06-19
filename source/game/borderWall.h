@@ -8,7 +8,15 @@ public:
 	borderWall();
 	virtual ~borderWall();
 
-	void init(CTextureManager& textureManager);
+	void init(CTextureManager& textureManager, float scale = 2.0f);
 	void update(float dt);
 	void drawWall();
+	bool checkCollision(vector2f& newPos);
+
+private:
+	float m_fScale;
+	vector2f closestPt[4];
+	vector2f debugPt[4];
+	vector2f debugLines[4];
+	Sprite2Dx closestPtSprite[4];
 };

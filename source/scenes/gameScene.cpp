@@ -6,6 +6,7 @@ Scene(1)
 {
     m_pTouchPtr=NULL;
 	m_bStopFollowCam = false;
+	m_bCollisionOccuredOnWall = false;
 	setGameState(State_Idle);
 }
 
@@ -103,7 +104,33 @@ void gameScene::onUpdate(unsigned int dtm)
 	}
 	case State_Simulate:
 	{
+		auto oldPos = m_cBall.getPosition2();
 		m_cBall.updatePhysics(dt);
+
+		//collision detection
+		auto newPos = m_cBall.getPosition2();
+		if(m_cBorderWall.checkCollision(newPos))
+		{
+			m_bCollisionOccuredOnWall = true;
+			m_fElapsedTimeAfterFirstCollision=0.0f;
+		}
+
+		if(m_bCollisionOccuredOnWall)
+		{
+			m_cPathGenerator.popTop(m_cPathGenerator.getPathCount());
+			auto diff = (oldPos-newPos).length();
+			if(diff<0.00001f)
+			{
+				m_fElapsedTimeAfterFirstCollision+=dt;
+				if(m_fElapsedTimeAfterFirstCollision>0.25f)
+				{
+					setGameState(State_Idle);
+					m_bCollisionOccuredOnWall=false;
+				}
+			}
+		}
+
+		m_cBall.set2DPosition(newPos.x, newPos.y);
 
 		//check if the ball reached the top point in path
 		if (!m_cPathGenerator.isAnyPath()) break;
@@ -151,11 +178,14 @@ void gameScene::onRender()
     
 	glPushMatrix();
 	glMultMatrixf(objectBase::getRenderer()->getViewMatrix()->getInverse().getMatrix());
-	//m_cEntityManager.render(*objectBase::getRenderer()->getViewMatrix());
 	m_cBorderWall.drawWall();
+	if(m_eGameState==State_Idle)
+	{
+		m_cTargetTrailEffect.drawTrail();
+	}
+
 	m_cBall.render(*objectBase::getRenderer()->getViewMatrix());
 	m_cPathGenerator.drawPath();
-	m_cTargetTrailEffect.drawTrail();
 	glPopMatrix();
 
     char buffer[128];
@@ -184,7 +214,6 @@ void gameScene::onPause()
 
 void gameScene::onResume()
 {
-    //resumeWithAllChilds();
 	resume();
 	Scene::onResume();
 }
@@ -313,92 +342,14 @@ void gameScene::onGameStateChange()
 	}
 }
 
-#include "../engine/util/util.h"
-
-void checkCollision(vector2f newPos)
+void gameScene::resetCollisionVars()
 {
-	int collision_check_cntr = 5;
-	while (collision_check_cntr--)
-	{
-		//oldPos = newPos;
-		vector2f avgPos;
-		int cnt = 0;
-		float ACTOR_COLLISION_RADIUS = 10;
-		float m_xActorRadiusSq = 10 * 10;
-		//circle-rectangle collision
-		vector2f left;// (tile->getLeftWorld());
-		vector2f right;// (tile->getRightWorld());
-		vector2f top;// (tile->getTopWorld());
-		vector2f bottom;// (tile->getBottomWorld());
-
-		//check for penitration
-		bool bPenitration = true;
-		if (newPos.x<left.x || newPos.y<top.y || newPos.x>right.x || newPos.y>bottom.y)
-			bPenitration = false;
-
-		//                    if(bPenitration)
-		//                    {
-		//                        DEBUG_PRINT("=======================PENITRATION OCCURED=================");
-		//                    }
-
-		vector2f closestPt[4];
-
-		closestPt[0] = (gxUtil::closestPointOnLine(newPos, left, top));
-		closestPt[1] = (gxUtil::closestPointOnLine(newPos, top, right));
-		closestPt[2] = (gxUtil::closestPointOnLine(newPos, right, bottom));
-		closestPt[3] = (gxUtil::closestPointOnLine(newPos, bottom, left));
-
-		//which one is the closest
-		int closest_length = GX_MAX_INT;
-		int closest_index = -1;
-
-		for (int l = 0; l < 4; l++)
-		{
-			vector2f diff(newPos - closestPt[l]);
-			__int64 length = diff.lengthSquared();
-			if (length < closest_length)
-			{
-				closest_length = length;
-				closest_index = l;
-
-				if (bPenitration)
-				{
-					diff = -diff;
-				}
-
-				if (closest_length <= m_xActorRadiusSq)
-				{
-					//collision occured
-					diff.normalize();
-					float val = ACTOR_COLLISION_RADIUS + 0.1f;
-					vector2f calc_Pos(closestPt[closest_index] + (diff*val));
-					avgPos += calc_Pos;
-					cnt++;
-					//DEBUG_PRINT("(%d), closestPt(%f, %f), calc_pos(%f, %f)", l, closestPtf[closest_index].x, closestPtf[closest_index].y, calc_Pos.x, calc_Pos.y);
-				}
-			}
-		}//for
-
-		if (cnt)
-		{
-			avgPos.x = avgPos.x / cnt;
-			avgPos.y = avgPos.y / cnt;
-			newPos = avgPos;	//this will cause the actor to come to a halt then move away, so i commented this line
-			//DEBUG_PRINT("collision occured %d, avgPos(%f, %f)", cnt, avgPosf.x, avgPosf.x);
-		}
-		else
-		{
-			break;	//break the loop
-		}
-	}
+	m_bCollisionOccuredOnWall = false;
 }
 
 //chase cam
-
 void gameScene::followObject(float dt, objectBase* chasedObj)
 {
-	//return;
-
 	if(dt>0.1f || m_bStopFollowCam) return;
 	if(chasedObj==NULL) return;
 

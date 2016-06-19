@@ -67,6 +67,9 @@ public:
 	void onGameStateChange();
 	void followObject(float dt, objectBase* chasedObj);
 
+	//collision
+	void resetCollisionVars();
+
     CTextureManager m_cTextureManager;
     
     void* m_pTouchPtr;
@@ -84,4 +87,6 @@ public:
 
 	kGameState m_eGameState;
 	bool m_bStopFollowCam;
+	bool m_bCollisionOccuredOnWall;
+	float m_fElapsedTimeAfterFirstCollision;
 };

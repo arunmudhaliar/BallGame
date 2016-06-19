@@ -81,8 +81,6 @@ void ball::updatePhysics(float dt)
 
 	m_cVelocity = m_cVelocity+vel;
 	vector2f pos(getPosition2());
-	//float speed=(m_cVelocity*dt).length();
-	//pos=pos-getYAxis()*speed;
 	auto displacement = m_cVelocity*dt;
 	pos = pos + m_cVelocity;
 
@@ -104,6 +102,5 @@ void ball::addForce(vector2f force)
 
 void ball::render(const matrix4x4f& renderMatrix)
 {
-	//objectBase::render(&renderMatrix);
 	gxMesh::render();
 }
