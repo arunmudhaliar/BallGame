@@ -14,4 +14,7 @@ public:
 	void drawTrail();
 
 	void calculateTrail(vector2f startPos, vector2f endPos);
+
+private:
+	float m_fScale;
 };

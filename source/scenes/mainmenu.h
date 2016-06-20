@@ -1,5 +1,4 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#pragma once
 
 #include "../SceneManager/Scene.h"
 
@@ -21,5 +20,3 @@ protected:
 private:
 	matrix4x4f m_cViewMatrix;
 };
-
-#endif

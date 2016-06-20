@@ -69,55 +69,7 @@ void gameScene::onUpdate(unsigned int dtm)
 	}
 	case State_Simulate:
 	{
-		auto oldPos = m_cBall.getPosition2();
-		m_cBall.updatePhysics(dt);
-
-		//collision detection
-		auto newPos = m_cBall.getPosition2();
-		if(m_cBorderWall.checkCollision(newPos))
-		{
-			m_bCollisionOccuredOnWall = true;
-			m_fElapsedTimeAfterFirstCollision=0.0f;
-		}
-
-		if(m_bCollisionOccuredOnWall)
-		{
-			m_cPathGenerator.popTop(m_cPathGenerator.getPathCount());
-			auto diff = (oldPos-newPos).length();
-			if(diff<0.00001f)
-			{
-				m_fElapsedTimeAfterFirstCollision+=dt;
-				if(m_fElapsedTimeAfterFirstCollision>0.25f)
-				{
-					setGameState(State_Idle);
-					m_bCollisionOccuredOnWall=false;
-				}
-			}
-		}
-
-		m_cBall.set2DPosition(newPos.x, newPos.y);
-
-		//check if the ball reached the top point in path
-		if (!m_cPathGenerator.isAnyPath()) break;
-
-		auto targetPos = m_cPathGenerator.getTop(PATH_AVG_COUNT);
-		auto ballPos = m_cBall.getPosition2();
-		float t = 0.0f;
-		if (m_cPathGenerator.isReachedNearTop(ballPos, 5.0f, t, PATH_AVG_COUNT))
-		{
-			m_cPathGenerator.popTop(PATH_AVG_COUNT);
-			if (m_cPathGenerator.getPathCount()==0)
-			{
-				setGameState(State_Idle);
-			}
-		}
-		else
-		{
-			auto diff = targetPos - ballPos;
-			diff.normalize();
-			diff = diff*BALL_SPEED;
-			m_cBall.addForce(diff);
-		}
+		doSimulate(dt);
 		break;
 	}
 	case State_EndSimulation:
@@ -245,6 +197,69 @@ void gameScene::onGameStateChange()
 void gameScene::resetCollisionVars()
 {
 	m_bCollisionOccuredOnWall = false;
+}
+
+void gameScene::doSimulate(float dt)
+{
+	auto oldPos = m_cBall.getPosition2();
+	m_cBall.updatePhysics(dt);
+
+	//collision detection
+	auto newPos = m_cBall.getPosition2();
+	if(m_cBorderWall.checkCollision(newPos, m_cBall.getRadius()))
+	{
+		m_bCollisionOccuredOnWall = true;
+		//m_fElapsedTimeAfterFirstCollision=0.0f;
+	}
+
+	//if ball collided with the wall, then the ball will not proceed on the designed path. It will stop after a while.
+	if(m_bCollisionOccuredOnWall)
+	{
+		m_cPathGenerator.popTop(m_cPathGenerator.getPathCount());
+		float velocity = m_cBall.getVelocity().length();
+		if(velocity<0.0001f)
+		{
+			setGameState(State_Idle);
+			m_bCollisionOccuredOnWall=false;
+		}
+		//auto diff = (oldPos-newPos).length();
+		//if(diff<0.00001f)
+		//{
+		//	m_fElapsedTimeAfterFirstCollision+=dt;
+		//	if(m_fElapsedTimeAfterFirstCollision>0.25f)
+		//	{
+		//		setGameState(State_Idle);
+		//		m_bCollisionOccuredOnWall=false;
+		//	}
+		//}
+	}
+
+	//set the new position as per the physics.
+	m_cBall.set2DPosition(newPos.x, newPos.y);
+
+	//check if the ball reached the top point in path
+	if (!m_cPathGenerator.isAnyPath()) return;
+
+	//calculate the force on the basis of PATH_AVG_COUNT from the path list.
+	auto targetPos = m_cPathGenerator.getTop(PATH_AVG_COUNT);
+	auto ballPos = m_cBall.getPosition2();
+	float t = 0.0f;
+	if (m_cPathGenerator.isReachedNearTop(ballPos, 5.0f, t, PATH_AVG_COUNT))
+	{
+		m_cPathGenerator.popTop(PATH_AVG_COUNT);
+		if (m_cPathGenerator.getPathCount()==0)
+		{
+			setGameState(State_Idle);
+		}
+	}
+	else
+	{
+		//calculate the force towards the calculated point.
+		auto diff = targetPos - ballPos;
+		diff.normalize();
+		diff = diff*BALL_SPEED;
+		m_cBall.addForce(diff);
+	}
 }
 
 //chase cam

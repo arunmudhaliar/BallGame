@@ -1,13 +1,13 @@
 #include "targetTrail.h"
 
-targetTrail::targetTrail() :Sprite2Dx()
+targetTrail::targetTrail():
+	Sprite2Dx()
 {
-
+	m_fScale = 1.0f;
 }
 
 targetTrail::~targetTrail()
 {
-
 }
 
 void targetTrail::init(CTextureManager& textureManager)
@@ -30,6 +30,7 @@ void targetTrail::calculateTrail(vector2f startPos, vector2f endPos)
 	auto det = diff.x*median.y - diff.y*median.x;
 
 	auto scale = length / getClipWidth();
+	m_fScale = scale;
 	auto rotation = 180 - RAD2DEG(atan2(det, dot));
 
 	matrix4x4f rotationTM;
@@ -47,7 +48,7 @@ void targetTrail::update(float dt)
 {
 	auto temp = m_cTextureMatrix.getMatrix();
 	auto pos = m_cTextureMatrix.getPosition();
-	float delta = 0.25f * dt;
+	float delta = 0.3f/m_fScale * dt;
 	pos.x += (delta* temp[0]);
 	pos.y += (delta* temp[1]);
 	pos.z += (delta* temp[2]);
@@ -57,6 +58,5 @@ void targetTrail::update(float dt)
 
 void targetTrail::drawTrail()
 {
-	//debugDraw();
 	draw(*objectBase::getRenderer()->getViewMatrix());
 }

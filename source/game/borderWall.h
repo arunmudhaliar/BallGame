@@ -11,7 +11,7 @@ public:
 	void init(CTextureManager& textureManager, float scale = 2.0f);
 	void update(float dt);
 	void drawWall();
-	bool checkCollision(vector2f& newPos);
+	bool checkCollision(vector2f& newPos, float radius);
 
 private:
 	float m_fScale;

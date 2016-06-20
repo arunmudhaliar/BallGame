@@ -2,6 +2,8 @@
 
 #include "../engine/core/gxMesh.h"
 
+#define BALL_RADIUS	10.0f;
+
 class ball : public gxMesh
 {
 public:
@@ -15,6 +17,9 @@ public:
 	void updatePhysics(float dt);
 	void clearForce();
 	void addForce(vector2f force);
+
+	float getRadius()		{	return BALL_RADIUS;	}
+	vector2f getVelocity()	{	return m_cVelocity;	}
 
 private:
 	void readHeader(gxFile& file);

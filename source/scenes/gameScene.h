@@ -45,6 +45,9 @@ public:
 	void resetCollisionVars();
 
 private:
+
+	void doSimulate(float dt);
+
     CTextureManager m_cTextureManager;
 	matrix4x4f m_cViewMatrix;
 
@@ -55,5 +58,5 @@ private:
 	kGameState m_eGameState;
 	bool m_bStopFollowCam;
 	bool m_bCollisionOccuredOnWall;
-	float m_fElapsedTimeAfterFirstCollision;
+	//float m_fElapsedTimeAfterFirstCollision;
 };

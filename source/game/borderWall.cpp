@@ -50,31 +50,32 @@ void borderWall::drawWall()
 	glEnd();
 }
 
-bool borderWall::checkCollision(vector2f& newPos)
+bool borderWall::checkCollision(vector2f& newPos, float radius)
 {
 	auto viewportSz = Scene::getCommonData()->getRendererPtr()->getViewPortSz();
 
 	bool bCollided = false;
 	int collision_check_cntr = 5;
+
+	float radiusSq = radius * radius;
+	//circle-rectangle collision
+	float multiplier = m_fScale*0.5f;
+
+	vector2f left(viewportSz.x*0.5f-getClipWidth()*multiplier, viewportSz.y*0.5f+getClipHeight()*multiplier);
+	vector2f right(viewportSz.x*0.5f+getClipWidth()*multiplier, viewportSz.y*0.5f-getClipHeight()*multiplier);
+	vector2f top(viewportSz.x*0.5f-getClipWidth()*multiplier, viewportSz.y*0.5f-getClipHeight()*multiplier);
+	vector2f bottom(viewportSz.x*0.5f+getClipWidth()*multiplier, viewportSz.y*0.5f+getClipHeight()*multiplier);
+
+	debugLines[0] = left;
+	debugLines[1] = right;
+	debugLines[2] = top;
+	debugLines[3] = bottom;
+
 	while (collision_check_cntr--)
 	{
 		//oldPos = newPos;
 		vector2f avgPos;
 		int cnt = 0;
-		float ACTOR_COLLISION_RADIUS = 10;
-		float m_xActorRadiusSq = 100.0f;
-		//circle-rectangle collision
-		float multiplier = m_fScale*0.5f;
-
-		vector2f left(viewportSz.x*0.5f-getClipWidth()*multiplier, viewportSz.y*0.5f+getClipHeight()*multiplier);
-		vector2f right(viewportSz.x*0.5f+getClipWidth()*multiplier, viewportSz.y*0.5f-getClipHeight()*multiplier);
-		vector2f top(viewportSz.x*0.5f-getClipWidth()*multiplier, viewportSz.y*0.5f-getClipHeight()*multiplier);
-		vector2f bottom(viewportSz.x*0.5f+getClipWidth()*multiplier, viewportSz.y*0.5f+getClipHeight()*multiplier);
-
-		debugLines[0] = left;
-		debugLines[1] = right;
-		debugLines[2] = top;
-		debugLines[3] = bottom;
 
 		//check for penitration
 		bool bPenitration = true;
@@ -114,11 +115,11 @@ bool borderWall::checkCollision(vector2f& newPos)
 					diff = -diff;
 				}
 
-				if (closest_length <= m_xActorRadiusSq)
+				if (closest_length <= radiusSq)
 				{
 					//collision occured
 					diff.normalize();
-					float val = ACTOR_COLLISION_RADIUS + 0.1f;
+					float val = radius + 0.1f;
 					vector2f calc_Pos(closestPt[closest_index] + (diff*val));
 					avgPos += calc_Pos;
 					cnt++;
