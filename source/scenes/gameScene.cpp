@@ -29,10 +29,12 @@ bool gameScene::loadResource(int userdefined)
 {
 	m_cViewMatrix.identity();
 
-	m_cBall.load(getResourcePath("mesh//cube.preview"));
+	m_cBall.load(getResourcePath("mesh//sphere.mesh"), getResourcePath("textures//checkerz.png"), m_cTextureManager);
 	m_cTargetTrailEffect.init(m_cTextureManager);
 	m_cBorderWall.init(m_cTextureManager);
 	m_cPathGenerator.init(m_cTextureManager);
+	m_cBall.setColor(vector3f(1.0f, 1.0f, 1.0f));
+
 	return true;
 }
 
@@ -202,13 +204,14 @@ void gameScene::resetCollisionVars()
 void gameScene::doSimulate(float dt)
 {
 	auto oldPos = m_cBall.getPosition2();
-	m_cBall.updatePhysics(dt);
+	m_cBall.update(dt);
 
 	//collision detection
 	auto newPos = m_cBall.getPosition2();
 	if(m_cBorderWall.checkCollision(newPos, m_cBall.getRadius()))
 	{
 		m_bCollisionOccuredOnWall = true;
+		m_cBall.turnRed();
 		//m_fElapsedTimeAfterFirstCollision=0.0f;
 	}
 
@@ -244,7 +247,7 @@ void gameScene::doSimulate(float dt)
 	auto targetPos = m_cPathGenerator.getTop(PATH_AVG_COUNT);
 	auto ballPos = m_cBall.getPosition2();
 	float t = 0.0f;
-	if (m_cPathGenerator.isReachedNearTop(ballPos, 5.0f, t, PATH_AVG_COUNT))
+	if (m_cPathGenerator.isReachedNearTop(ballPos, BALL_RADIUS, t, PATH_AVG_COUNT))
 	{
 		m_cPathGenerator.popTop(PATH_AVG_COUNT);
 		if (m_cPathGenerator.getPathCount()==0)
@@ -271,7 +274,7 @@ void gameScene::followObject(float dt, objectBase* chasedObj)
 	matrix4x4f* chasingObj=objectBase::getRenderer()->getViewMatrix();
 
 	auto viewportSz = getCommonData()->getRendererPtr()->getViewPortSz();
-	vector3f	eyeOff(-viewportSz.x*0.5f, -viewportSz.y*0.5f, -5);
+	vector3f	eyeOff(-viewportSz.x*0.5f, -viewportSz.y*0.5f, -BALL_RADIUS*0.5f);
 
 	vector3f    transformedEye((chasedObj->getPosition()) + eyeOff);
 	vector3f    chasingObjPos(chasingObj->getPosition());

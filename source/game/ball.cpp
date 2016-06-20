@@ -3,76 +3,58 @@
 ball::ball() :
 gxMesh()
 {
+	m_bTurnRed = false;
+	m_fTurnRedColor = 0.0f;
 }
 
 ball::~ball()
 {
 }
 
-void ball::load(const std::string& path)
+void ball::load(const std::string& path, const std::string& texturePath, CTextureManager& textureManager)
 {
 	gxFile file;
 	if (file.OpenFile(path.c_str()))
 	{
-		//read meta header
-		struct tmpStruct
-		{
-			__int64 headerTime[3];
-			int headerType;
-		};
-		tmpStruct header;
-		file.ReadBuffer((unsigned char*)&header, sizeof(header));
-
-		//read object ID
-		int objID = 0;
-		file.Read(objID);
-		readHeader(file);
-		int nChild = 0;
-		file.Read(nChild);
-
-		file.Read(objID);
-		readHeader(file);
-
-		char* scriptname = file.ReadString();
-		GX_DELETE_ARY(scriptname);
-
 		readScriptObject(file);
 
 		file.CloseFile();
 	}
 
 	//identity();
-	setPosition(0, 0, 5.0f);
-	setScale(10.0f, 10.0f, 10.0f);
-}
+	float ball_radius = BALL_RADIUS;
+	setPosition(0, 0, ball_radius*0.5f);
+	setScale(ball_radius, ball_radius, ball_radius);
 
-void ball::readHeader(gxFile& file)
-{
-	//core - loop
-	int baseflag = 0;
-	file.Read(baseflag);
-	char* temp = file.ReadString();
-	GX_DELETE_ARY(temp);
-	file.ReadBuffer((unsigned char*)m, sizeof(m));
-	float oobb[6];
-	file.ReadBuffer((unsigned char*)&oobb, sizeof(oobb));
-	int crc;
-	file.Read(crc);
-
-	bool bAnimationController = false;
-	file.Read(bAnimationController);
-
-	int nAttachedScripts = 0;
-	file.Read(nAttachedScripts);
-	//
+	if(!texturePath.empty())
+	{
+		loadTexture(texturePath, textureManager);
+	}
 }
 
 void ball::update(float dt)
 {
-	updatePhysics(dt);
+	doPhysics(dt);
+	doTurnRed(dt);
 }
 
-void ball::updatePhysics(float dt)
+void ball::doTurnRed(float dt)
+{
+	if(m_bTurnRed)
+	{
+		m_fTurnRedColor-=dt*10.0f;
+
+		if(m_fTurnRedColor<0.0f)
+		{
+			m_fTurnRedColor = 0.0f;
+			m_bTurnRed=false;
+		}
+
+		setColor(vector3f(1.0f, 1.0f-m_fTurnRedColor, 1.0f-m_fTurnRedColor));
+	}
+}
+
+void ball::doPhysics(float dt)
 {
 	//F = M*A
 	float inverseMass=0.1f;

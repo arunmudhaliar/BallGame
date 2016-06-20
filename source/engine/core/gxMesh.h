@@ -65,14 +65,16 @@ public:
 	int getVerticesCount();
 	int getTriangleCount()		{    return noOfTrianglesForInternalUse;	}
 
+	void loadTexture(const std::string& path, CTextureManager& textureManager);
+
+	void setColor(vector3f clr)	{	color = clr;	}
+
 protected:
     virtual void readScriptObject(gxFile& file);
 	void renderNormal();
 
-#if 0
-	bool applyStageTexture(gxRenderer* renderer, int stage, gxTriInfo* triInfo, gxUV* uv, gxSubMap* submap, int aTexEnv1, int aTexEnv2, unsigned int texCoordSz, gxHWShader* shader, const char* texCoordAttribName);	
-	void disableTextureOperations(int stage, gxHWShader* shader, const char* texCoordAttribName);
-#endif
+	bool applyStageTexture(unsigned int texID, gxUV* uv);
+	void disableTextureOperations();
 
 	int triangleInfoArrayCount;
 	gxTriInfo* triangleInfoArray;
@@ -82,6 +84,9 @@ protected:
 	float* normalBuffer;
 	float* tangentBuffer;
 
+	vector3f color;
+
+	unsigned int textureID;
 	int uvChannelCount;
 	gxUV* uvChannel;
 	int noOfTrianglesForInternalUse;
