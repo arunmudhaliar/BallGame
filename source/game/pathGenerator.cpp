@@ -2,12 +2,11 @@
 
 pathGenerator::pathGenerator()
 {
-	m_iThresholdAngle = 5;
+	m_iThresholdAngle = PATH_GENERATOR_THRESHOLD_ANGLE;
 }
 
 pathGenerator::~pathGenerator()
 {
-
 }
 
 void pathGenerator::init(CTextureManager& textureManager)
@@ -31,7 +30,7 @@ void pathGenerator::doPath(float x, float y)
 		}
 
 		auto diff = m_cPath[0] - vector2f(x, y);
-		if (diff.length() > 5)
+		if (diff.length() > m_iThresholdAngle)
 		{
 			m_cPath.push_back(vector2f(x, y));
 		}

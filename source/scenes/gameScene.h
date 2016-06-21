@@ -6,8 +6,9 @@
 #include "../game/pathGenerator.h"
 #include "../game/borderWall.h"
 
-#define PATH_AVG_COUNT 5
 #define BALL_SPEED	100.0f
+
+//The game scene. Responsible for the simulation.
 
 class gameScene : public Scene
 {
@@ -41,11 +42,7 @@ public:
 	void onGameStateChange();
 	void followObject(float dt, objectBase* chasedObj);
 
-	//collision
-	void resetCollisionVars();
-
 private:
-
 	void doSimulate(float dt);
 
     CTextureManager m_cTextureManager;

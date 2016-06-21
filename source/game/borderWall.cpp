@@ -20,12 +20,14 @@ void borderWall::init(CTextureManager& textureManager, float scale)
 	setScale(m_fScale, m_fScale, 1);
 	recalculateTile();
 
+#if DEBUG_COLLISION
 	for(int x=0;x<4;x++)
 	{
 		closestPtSprite[x].setOffset(0, 0);
 		closestPtSprite[x].loadTexture(&textureManager, getResourcePath("textures//star33.png"));
 		closestPtSprite[x].setScale(0.25f, 0.25f, 1);
 	}
+#endif
 }
 
 void borderWall::update(float dt)
@@ -36,6 +38,7 @@ void borderWall::drawWall()
 {
 	draw(*objectBase::getRenderer()->getViewMatrix());
 
+#if DEBUG_COLLISION
 	for(int x=0;x<4;x++)
 	{
 		closestPtSprite[x].set2DPosition(closestPt[x].x, closestPt[x].y);
@@ -48,6 +51,7 @@ void borderWall::drawWall()
 	glVertex2f(debugLines[2].x, debugLines[2].y);
 	glVertex2f(debugLines[3].x, debugLines[3].y);
 	glEnd();
+#endif
 }
 
 bool borderWall::checkCollision(vector2f& newPos, float radius)
@@ -66,10 +70,12 @@ bool borderWall::checkCollision(vector2f& newPos, float radius)
 	vector2f top(viewportSz.x*0.5f-getClipWidth()*multiplier, viewportSz.y*0.5f-getClipHeight()*multiplier);
 	vector2f bottom(viewportSz.x*0.5f+getClipWidth()*multiplier, viewportSz.y*0.5f+getClipHeight()*multiplier);
 
+#if DEBUG_COLLISION
 	debugLines[0] = left;
 	debugLines[1] = right;
 	debugLines[2] = top;
 	debugLines[3] = bottom;
+#endif
 
 	while (collision_check_cntr--)
 	{
@@ -92,10 +98,12 @@ bool borderWall::checkCollision(vector2f& newPos, float radius)
 		closestPt[2] = (gxUtil::closestPointOnLine(newPos, right, bottom));
 		closestPt[3] = (gxUtil::closestPointOnLine(newPos, bottom, left));
 
+#if DEBUG_COLLISION
 		debugPt[0] = closestPt[0];
 		debugPt[1] = closestPt[1];
 		debugPt[2] = closestPt[2];
 		debugPt[3] = closestPt[3];
+#endif
 
 		//which one is the closest
 		float closest_length = (float)GX_MAX_INT;

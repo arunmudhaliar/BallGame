@@ -2,6 +2,9 @@
 
 #include "../engine/core/gxMesh.h"
 
+//This class is responsible for the rigidbody implementation.
+//Inherited from gxMesh for mesh loading functionality.
+
 #define BALL_RADIUS	20.0f
 
 class ball : public gxMesh
@@ -32,5 +35,4 @@ private:
 
 	vector2f m_cForce;
 	vector2f m_cVelocity;
-	
 };

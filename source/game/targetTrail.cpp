@@ -4,6 +4,7 @@ targetTrail::targetTrail():
 	Sprite2Dx()
 {
 	m_fScale = 1.0f;
+	m_bVisible = true;
 }
 
 targetTrail::~targetTrail()
@@ -58,5 +59,8 @@ void targetTrail::update(float dt)
 
 void targetTrail::drawTrail()
 {
-	draw(*objectBase::getRenderer()->getViewMatrix());
+	if(m_bVisible)
+	{
+		draw(*objectBase::getRenderer()->getViewMatrix());
+	}
 }

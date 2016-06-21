@@ -61,21 +61,9 @@ void gameScene::onUpdate(unsigned int dtm)
 
 	switch (m_eGameState)
 	{
-	case State_Idle:
-	{
-		break;
-	}
-	case State_EditPath:
-	{
-		break;
-	}
 	case State_Simulate:
 	{
 		doSimulate(dt);
-		break;
-	}
-	case State_EndSimulation:
-	{
 		break;
 	}
 	}
@@ -98,20 +86,14 @@ void gameScene::onRender()
 	glPushMatrix();
 	glMultMatrixf(objectBase::getRenderer()->getViewMatrix()->getInverse().getMatrix());
 	m_cBorderWall.drawWall();
-	if(m_eGameState==State_Idle)
-	{
-		m_cTargetTrailEffect.drawTrail();
-	}
+	m_cTargetTrailEffect.drawTrail();
 
 	m_cBall.render(*objectBase::getRenderer()->getViewMatrix());
 	m_cPathGenerator.drawPath();
 	glPopMatrix();
 
     char buffer[128];
-	sprintf(buffer, "fps = %2.2f\n\n\npath=%d", 
-					Timer::getFPS(), 
-					m_cPathGenerator.getPathCount());
-
+	sprintf(buffer, "Click and drag inside the box.");
     getCommonData()->getArialBold15Font()->drawString(buffer, 10, 30, false, true);
 
 	Scene::onRender();
@@ -119,6 +101,7 @@ void gameScene::onRender()
 
 void gameScene::onTouchBegin(int x, int y, void* touchPtr)
 {
+	//if the state is idle then start the path-generator logic.
 	if (m_eGameState == State_Idle)
 	{
 		setGameState(State_EditPath);
@@ -135,18 +118,25 @@ void gameScene::onTouchMoved(int x, int y, void* touchPtr)
 	matrix4x4f* view = objectBase::getRenderer()->getViewMatrix();
 	auto viewPos = view->getPosition2();
 
-	if (m_eGameState == State_Idle)
+	switch (m_eGameState)
 	{
+	case State_Idle:
+	{
+		//if the state is idle then calculate the trail to render below the ball.
 		m_cTargetTrailEffect.calculateTrail(m_cBall.getPosition2(), vector2f(x+viewPos.x, y+viewPos.y));
+		m_cTargetTrailEffect.setVisible(true);
+		break;
 	}
-
-	if (m_eGameState == State_EditPath)
+	case State_EditPath:
 	{
+		//if the state is 'editPath' then calculate the new point based on the rules.
 		int flag = *(int*)touchPtr;
 		if ((MK_LBUTTON&flag))
 		{
 			m_cPathGenerator.doPath(x+viewPos.x, y+viewPos.y);
 		}
+		break;
+	}
 	}
 }
 
@@ -154,6 +144,7 @@ void gameScene::onTouchEnd(int x, int y, bool bProcessed, void* touchPtr)
 {
 	if (m_eGameState == State_EditPath)
 	{
+		//End the generation logic for path-generator.
 		matrix4x4f* view = objectBase::getRenderer()->getViewMatrix();
 		auto viewPos = view->getPosition2();
 
@@ -178,10 +169,12 @@ void gameScene::onGameStateChange()
 	{
 	case State_Idle:
 	{
+		m_bCollisionOccuredOnWall=false;
 		break;
 	}
 	case State_EditPath:
 	{
+		m_cTargetTrailEffect.setVisible(false);
 		break;
 	}
 	case State_Simulate:
@@ -189,16 +182,11 @@ void gameScene::onGameStateChange()
 		m_bStopFollowCam = false;
 		break;
 	}
-	case State_EndSimulation:
-	{
-		break;
+	//case State_EndSimulation:
+	//{
+	//	break;
+	//}
 	}
-	}
-}
-
-void gameScene::resetCollisionVars()
-{
-	m_bCollisionOccuredOnWall = false;
 }
 
 void gameScene::doSimulate(float dt)
@@ -212,10 +200,10 @@ void gameScene::doSimulate(float dt)
 	{
 		m_bCollisionOccuredOnWall = true;
 		m_cBall.turnRed();
-		//m_fElapsedTimeAfterFirstCollision=0.0f;
 	}
 
-	//if ball collided with the wall, then the ball will not proceed on the designed path. It will stop after a while.
+	//if ball collided with the wall, then the ball will not proceed on the designed path. 
+	//It will stop after a while.
 	if(m_bCollisionOccuredOnWall)
 	{
 		m_cPathGenerator.popTop(m_cPathGenerator.getPathCount());
@@ -225,16 +213,6 @@ void gameScene::doSimulate(float dt)
 			setGameState(State_Idle);
 			m_bCollisionOccuredOnWall=false;
 		}
-		//auto diff = (oldPos-newPos).length();
-		//if(diff<0.00001f)
-		//{
-		//	m_fElapsedTimeAfterFirstCollision+=dt;
-		//	if(m_fElapsedTimeAfterFirstCollision>0.25f)
-		//	{
-		//		setGameState(State_Idle);
-		//		m_bCollisionOccuredOnWall=false;
-		//	}
-		//}
 	}
 
 	//set the new position as per the physics.
@@ -243,13 +221,13 @@ void gameScene::doSimulate(float dt)
 	//check if the ball reached the top point in path
 	if (!m_cPathGenerator.isAnyPath()) return;
 
-	//calculate the force on the basis of PATH_AVG_COUNT from the path list.
-	auto targetPos = m_cPathGenerator.getTop(PATH_AVG_COUNT);
+	//calculate the force on the basis of PATH_GENERATOR_NO_OF_POINTS_TO_APPROXIMATE from the path list.
+	auto targetPos = m_cPathGenerator.getTop(PATH_GENERATOR_NO_OF_POINTS_TO_APPROXIMATE);
 	auto ballPos = m_cBall.getPosition2();
 	float t = 0.0f;
-	if (m_cPathGenerator.isReachedNearTop(ballPos, BALL_RADIUS, t, PATH_AVG_COUNT))
+	if (m_cPathGenerator.isReachedNearTop(ballPos, BALL_RADIUS, t, PATH_GENERATOR_NO_OF_POINTS_TO_APPROXIMATE))
 	{
-		m_cPathGenerator.popTop(PATH_AVG_COUNT);
+		m_cPathGenerator.popTop(PATH_GENERATOR_NO_OF_POINTS_TO_APPROXIMATE);
 		if (m_cPathGenerator.getPathCount()==0)
 		{
 			setGameState(State_Idle);
