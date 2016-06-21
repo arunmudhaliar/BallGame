@@ -56,6 +56,8 @@ void ball::doTurnRed(float dt)
 
 void ball::doPhysics(float dt)
 {
+	//Euler integration
+
 	//F = M*A
 	float inverseMass=0.1f;
 	vector2f acc(m_cForce*inverseMass);
@@ -66,7 +68,7 @@ void ball::doPhysics(float dt)
 	auto displacement = m_cVelocity*dt;
 	pos = pos + m_cVelocity;
 
-	m_cVelocity=m_cVelocity*0.9f;
+	m_cVelocity=m_cVelocity*0.9f;	//decipate the accumulated velocity over a period of time.
 	clearForce();
 
 	setPosition(pos);
