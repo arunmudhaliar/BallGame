@@ -16,3 +16,5 @@ Files related to the game.
 -borderWall.h		(collision detection)
 -pathGenerator.h	(generates and renders point sprites for the path)
 -targetTrail.h		(small trail effect using texture matrix transformation)
+
+-executable.zip		(Released version of the game. Extract and run the BallGame.exe)
