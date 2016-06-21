@@ -12,9 +12,9 @@ BallGame
 
 Files related to the game.
 -------------------------------
--ball.h				(Rigid body)	(Didn't implemeted angular velocity)
--borderWall.h		(collision detection)
--pathGenerator.h	(generates and renders point sprites for the path)
--targetTrail.h		(small trail effect using texture matrix transformation)
+- ball.h			: (Rigid body)	(Didn't implemeted angular velocity).
+- borderWall.h		: (collision detection).
+- pathGenerator.h	: (generates and renders point sprites for the path).
+- targetTrail.h		: (small trail effect using texture matrix transformation).
 
--executable.zip		(Released version of the game. Extract and run the BallGame.exe)
+- executable.zip	: (Released version of the game. Extract and run the BallGame.exe).
